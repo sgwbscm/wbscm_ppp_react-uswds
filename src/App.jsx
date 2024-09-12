@@ -476,7 +476,7 @@ export default function App() {
         <fieldset className="usa-fieldset" hidden={hideAdavanceOptions}>
           <legend className="usa-legend text-bold">Advanced Search Options</legend>
             <div className="margin-top-1 grid-col-auto">
-            <div className="margin-top-1"><label htmlFor="input-perf_dt">Performance Period</label></div>
+            <div className="margin-top-1"><label htmlFor="perf-date">Performance Period</label></div>
             </div>
             <div className="grid-row grid-gap-1">
             
