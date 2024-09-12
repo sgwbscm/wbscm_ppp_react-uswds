@@ -1,0 +1,13 @@
+@import "@trussworks/react-uswds/lib/index.css";
+
+.app {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 2%;
+ 
+}
+
+
