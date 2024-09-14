@@ -26,10 +26,24 @@ function Loading() {
 export default function App() {
 
   const { qSolicitation } = useLoaderData();
-
-
   
-  const serviceURL = "https://g0afk1o10c.execute-api.us-east-1.amazonaws.com/dev?mode=db";
+  const [searchSolNum, setSearchSolNum] = useState("");
+  const [searchPID, setSearchPID] = useState("");
+  const [searchAwardId, setSearchAwardId] = useState("");
+  const [searchActiveSol, setSearchActiveSol] = useState("");
+  const [awardDate, setSearchAwardDate] = useState("");
+  const[searchDocumentCategory, setSearchDocumentCategory] = useState("Solicitation");
+  const [searchOfferDate, setSearchOfferDate] = useState("");
+  const [searchPackageNum, setSearchPackageNum] = useState("");
+  const [searchProductCategory, setSearchProductCategory] = useState("");
+  const [searchProductName, setSearchProductName] = useState("");
+  const [searchPublishDate, setSearchPublishDate] = useState("");
+  const [searchPurchaseGroup, setSearchPurchaseGroup] = useState("");
+  const [searchSolMethod, setSearchSolMethod] = useState("RFQ");
+  const [searchLatestVersion, setSearchLatestVersion] = useState("");
+  const [searchPerformanceDate, setSearchPerformanceDate] = useState("");
+  
+  const [serviceURL, setServiceURL] = useState("https://g0afk1o10c.execute-api.us-east-1.amazonaws.com/dev?mode=db");
 
   const [column, setColumn] = useState([]);
   const [files, setFiles] = useState([]);
@@ -39,9 +53,6 @@ export default function App() {
   const [links, setLinks] = useState([])
   const [solURL, setSolURL] = useState()
   const [solURLCopied, setSolURLCopied] = useState(false);
-  
-
-  const modalRef = useRef(null);
 
   const[sort, setSort] = useState({keyToSort:"sol_num", direction: "asc"});
 
@@ -53,10 +64,27 @@ export default function App() {
 
   const[docCategory, setDocCategory] = useState("Solicitations");
   
+  function handleSearch()
+  {
+    console.log("searchSolNum= " + searchSolNum, " | searchPID= " + searchPID, " | searchAwardId= " + searchAwardId," | searchActiveSol= " + searchActiveSol, " | awardDate= " + 
+    awardDate, " | searchDocumentCategory= " + searchDocumentCategory, 
+    " | searchOfferDate= " + searchOfferDate, " | searchPackageNum= " + searchPackageNum, " | searchProductCategory= " + searchProductCategory, " | searchProductName= " + searchProductName, 
+    " | searchPublishDate= " + searchPublishDate, " | searchPurchaseGroup= " + searchPurchaseGroup, " | searchSolMethod= " + searchSolMethod, " | searchLatestionVersion= " + searchLatestVersion,
+    " | searchPerformanceDate= " +  document.getElementById("perf-date").value);
+
+    let t_perfDateOuter = document.getElementById("perf_dt_outer");
+    let t_perfDate = document.getElementById("perf-date");
+
+ 
+  }
+
+
+ 
 
   function handleLatestVersion() {};
 
   function handleActiveSolicitation() {};
+
   
 
   const headers = [
@@ -212,7 +240,10 @@ export default function App() {
        //console.log(data);
        setColumn(Object.keys(data[0]));
 
-       setFiles(data);
+       
+        setFiles(data);
+     
+
        setFilter(data);
 
 
@@ -233,7 +264,7 @@ export default function App() {
     
 
   
-  }, [])
+  }, [serviceURL])
 
   async function handleCopySolURL()
   {
@@ -384,7 +415,14 @@ export default function App() {
         setFilter(files)
     }
     else {
-     
+      if(filteredRows.length == 0)
+      {
+        console.log("No search results : " + filteredRows.length);
+
+        //check with AWS
+        setServiceURL("https://g0afk1o10c.execute-api.us-east-1.amazonaws.com/dev?mode=db"+"&qSolNum="+searchedVal);
+
+      }
       
         setFilter(filteredRows);
      
@@ -401,12 +439,12 @@ export default function App() {
           <fieldset className="usa-fieldset position-relative" >
           <legend className="usa-legend text-bold">Search Options</legend>
             <div className="grid-row grid-gap-1">
-              <div><input className="usa-input grid-col-auto" title="Solicitation Number" id="input-sol_num" name="input-sol_num" placeholder="Solicitations Number" type="text"  onChange={(e) => requestSearch(e.target.value)} /></div>
-              <div><input className="usa-input grid-col-auto" title="Procurement Instrument Identifier(PIID)" id="input-proc_id" name="input-proc_id" placeholder="Procurement Instrument Identifier(PIID)" type="text" onChange={(e) => requestSearch(e.target.value)}/></div>
-              <div><input className="usa-input grid-col-auto" title="Award ID" id="input-award_id" name="input-award_id" placeholder="Award ID" type="text" onChange={(e) => requestSearch(e.target.value)}/></div>
+              <div><input className="usa-input grid-col-auto" title="Solicitation Number" id="input-sol_num" name="input-sol_num" placeholder="Solicitations Number" type="text" value={searchSolNum} onChange={(e) => setSearchSolNum(e.target.value) }/></div>
+              <div><input className="usa-input grid-col-auto" title="Procurement Instrument Identifier(PIID)" id="input-proc_id" name="input-proc_id" placeholder="Procurement Instrument Identifier(PIID)" type="text" onChange={(e) => setSearchPID(e.target.value)}/></div>
+              <div><input className="usa-input grid-col-auto" title="Award ID" id="input-award_id" name="input-award_id" placeholder="Award ID" type="text" onChange={(e) => setSearchAwardId(e.target.value)}/></div>
 
               <div data-testid="checkbox" className="usa-checkbox">
-                <input className="usa-checkbox__input" id="latest-version" type="checkbox" name="latest-sol" title="Latest Version"  onChange={(e) => handleLatestVersion(e.target.selectedOptions)}  />
+                <input className="usa-checkbox__input" id="latest-version" type="checkbox" name="latest-sol" title="Latest Version"  onChange={(e) => setSearchLatestVersion(e.target.value)}  />
                 <label className="usa-checkbox__label" htmlFor="latest-version">Latest Version</label>
               </div>
                
@@ -414,7 +452,7 @@ export default function App() {
             </div>  
             <div className="grid-row grid-gap-1">
               <div>
-                <select className='usa-select' title="Product Category" id="input-prod_cat" name="input-prod_cat"  onChange={(e) => handleProductCat(e.target.selectedOptions)} defaultValue={" "}>
+                <select className='usa-select' title="Product Category" id="input-prod_cat" name="input-prod_cat"  onChange={(e) => setSearchProductCategory(e.target.value)}  defaultValue={" "}>
                       <option value="Meat">
                     Meat
                     </option>
@@ -424,13 +462,13 @@ export default function App() {
                 </select>
 
               </div>
-              <div><input className='usa-input' title="Product Name" id="input-prod_name" name="input-prod_name" placeholder="Product Name" type="text" onChange={(e) => requestSearch(e.target.value)}/></div>
+              <div><input className='usa-input' title="Product Name" id="input-prod_name" name="input-prod_name" placeholder="Product Name" type="text" onChange={(e) => setSearchProductName(e.target.value)} /></div>
           
 
   
        
              <div> 
-              <select className="usa-select" title="Publish Date" id="input-pub_dt" name="input-pub_dt"  onChange={(e) => handlePubDates(e.target.selectedOptions)} defaultValue={pubDateValue}>
+              <select className="usa-select" title="Publish Date" id="input-pub_dt" name="input-pub_dt"  onChange={(e) => setSearchPublishDate(e.target.value)} defaultValue={pubDateValue}>
                   <option value="Any">
                   Any
                 </option>
@@ -449,7 +487,7 @@ export default function App() {
               </select>
             </div>
             <div>
-              <select className="usa-select" title="Document Type" id="input-doc_cat" name="input-doc_ca"  onChange={(e) => handleDocumentCategory(e.target.selectedOptions)} defaultValue={docCategory}>
+              <select className="usa-select" title="Document Type" id="input-doc_cat" name="input-doc_ca"  onChange={(e) => setSearchDocumentCategory(e.target.value)}  defaultValue={docCategory}>
                         <option value="Solicitations">
                         Solicitations
                       </option>
@@ -465,7 +503,7 @@ export default function App() {
   
                     </select>
             </div>
-            <div   className="margin-top-1"><button className='usa-button' title="Search" type="button" onClick={applyFilters}>Search</button></div>
+            <div   className="margin-top-1"><button className='usa-button' title="Search" type="button" onClick={handleSearch}>Search</button></div>
             <div   className="margin-top-1"><button className='usa-button' type="button" onClick={handleHideAdavanceOptions}>Advanced Search</button></div>
             
             <div   className="margin-top-1"><button className='usa-button' type="button" onClick={exportToExcel}>Export To Excel</button></div>
@@ -481,14 +519,14 @@ export default function App() {
             <div className="grid-row grid-gap-1">
             
             <div id="perf_dt_outer" className="usa-date-picker usa-date-picker--initialized" data-min-date="0000-01-01">
-              <input className="usa-input usa-date-picker__internal-input" aria-labelledby="perf-date-label" aria-describedby="perf-date-hint" aria-hidden="true" tabIndex="-1" style={{display:"none"}}/>
+              <input className="usa-input usa-date-picker__internal-input" aria-labelledby="perf-date-label" aria-describedby="perf-date-hint" aria-hidden="true" tabIndex="-1" style={{display:"none"}}  />
                 <div className="usa-date-picker__wrapper">
-                  <input className="usa-input usa-date-picker__external-input" id="perf-date" name="perf-date" aria-labelledby="perf-date-label" aria-describedby="perf-date-hint" type="text" />
+                  <input className="usa-input usa-date-picker__external-input" id="perf-date" name="perf-date" aria-labelledby="perf-date-label" aria-describedby="perf-date-hint" type="text"/>
                   <button type="button" className="usa-date-picker__button" aria-haspopup="true" aria-label="Toggle calendar"></button>
                   <div className="usa-date-picker__calendar" role="application" hidden={true}></div>
                   <div className="usa-sr-only usa-date-picker__status" role="status" aria-live="polite"></div></div></div>
             <div>
-            <select className="usa-select grid-col-auto" title="Offer Date" id="input-offer_dt" name="input-Offer_dt"  onChange={(e) => handleOfferDates(e.target.selectedOptions)} defaultValue={pubDateValue}>
+            <select className="usa-select grid-col-auto" title="Offer Date" id="input-offer_dt" name="input-Offer_dt" onChange={(e) => setSearchOfferDate(e.target.value)}  defaultValue={pubDateValue}>
                     <option value="Any">
                     Any
                   </option>
@@ -507,7 +545,7 @@ export default function App() {
                 </select>
               </div>
               <div>
-                  <select className='usa-select grid-col-auto' title="Award Date" id="input-award_dt" name="input-award_dt"  onChange={(e) => handleAwardDates(e.target.selectedOptions)} defaultValue={pubDateValue}>
+                  <select className='usa-select grid-col-auto' title="Award Date" id="input-award_dt" name="input-award_dt"  onChange={(e) => setSearchAwardDate(e.target.value)}  defaultValue={pubDateValue}>
                     <option value="Any">
                     Any
                   </option>
@@ -525,7 +563,7 @@ export default function App() {
                   </option>
                 </select>
               </div>
-              <div> <select className="usa-select grid-col-auto" title="Solicitation Method" id="input-sol_method" name="input-sol_method"  onChange={(e) => handleSolMethod(e.target.selectedOptions)} defaultValue={" "}>
+              <div> <select className="usa-select grid-col-auto" title="Solicitation Method" id="input-sol_method" name="input-sol_method"  onChange={(e) => setSearchSolMethod(e.target.value)}  defaultValue={" "}>
                   <option value="RFQ">
                   RFQ
                   </option>
@@ -538,16 +576,16 @@ export default function App() {
                 </select>
               </div>
              <div data-testid="checkbox" className="usa-checkbox">
-                <input className="usa-checkbox__input" id="active_sol" type="checkbox" name="latest-sol" title="Active Solicitation"  onChange={(e) => handleActiveSolicitation(e.target.selectedOptions)}  />
+                <input className="usa-checkbox__input" id="active_sol" type="checkbox" name="latest-sol" title="Active Solicitation"  onChange={(e) => setSearchActiveSol(e.target.value)}   />
                 <label className="usa-checkbox__label" htmlFor="active_sol">Active Solicitation</label>
               </div>
             
               </div>
               <div className="grid-row grid-gap-1">
-                <div><input className='usa-input grid-col-auto' title="Package Number" id="input-pkg_num" name="input-pkg_num" placeholder="Package Soliciation Number" type="text" onChange={(e) => requestSearch(e.target.value)}/></div>
+                <div><input className='usa-input grid-col-auto' title="Package Number" id="input-pkg_num" name="input-pkg_num" placeholder="Package Soliciation Number" type="text" onChange={(e) => setSearchPackageNum(e.target.value)} /></div>
                 
               <div>
-                    <select className='usa-select grid-col-auto' title="Purchasing Group" id="input-pur_grp" name="input-pur_grp"  onChange={(e) => handlePurchaseGropu(e.target.selectedOptions)} defaultValue={" "}>
+                    <select className='usa-select grid-col-auto' title="Purchasing Group" id="input-pur_grp" name="input-pur_grp"  onChange={(e) => setSearchPurchaseGroup(e.target.value)}  defaultValue={" "}>
                       <option value="pur_grp_1">
                       Purchase Group 1
                     </option>
@@ -637,6 +675,8 @@ export default function App() {
     </div>
 
       </div>
+
+      <Footer />
    
     <div className="usa-modal-wrapper is-hidden" role="dialog" id="documents-modal" aria-labelledby="documents-modal-heading" aria-describedby="documents-modal-description" data-opener="documents-modal-button">
       <div className="usa-modal-overlay" aria-controls="documents-modal"><div className="usa-modal usa-modal--lg" tabIndex="-1">
@@ -645,7 +685,7 @@ export default function App() {
         <h2 className="usa-modal__heading" id="documents-modal-heading"><a id="are-you-sure-you-want-to-continue-2" className="usa-anchor"></a>
         Solication {solURL} Documents
         </h2>
-        <div className="usa-prose display-inline-flex">
+        <div className="usa-prose">
           <ul id="documents-modal-description" className="usa-list usa-list--unstyled">
           {links.map((link) => (
                <li key={link.name}>
@@ -686,7 +726,7 @@ export default function App() {
     </div>
   </div></div></div>
   
-    <Footer />
+    
 
     </div>
   );
