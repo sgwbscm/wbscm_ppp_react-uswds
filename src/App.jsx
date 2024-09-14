@@ -72,8 +72,7 @@ export default function App() {
     " | searchPublishDate= " + searchPublishDate, " | searchPurchaseGroup= " + searchPurchaseGroup, " | searchSolMethod= " + searchSolMethod, " | searchLatestionVersion= " + searchLatestVersion,
     " | searchPerformanceDate= " +  document.getElementById("perf-date").value);
 
-    let t_perfDateOuter = document.getElementById("perf_dt_outer");
-    let t_perfDate = document.getElementById("perf-date");
+
 
  
   }
