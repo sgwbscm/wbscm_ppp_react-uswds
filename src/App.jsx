@@ -634,9 +634,9 @@ export default function App() {
                 <tr key={i}>
                   <td >
                     <div className="display-inline-flex">
-                      <a  title={file.sol_num} href={"http://localhost:5173/?solicitation="+file.sol_num}>{file.sol_num}</a>
+                      <a  title={file.sol_num} href={"https://wbscm-ppp-uswds.simlix.org/?solicitation="+file.sol_num}>{file.sol_num}</a>
                       <img  title="Copy Solicitation Link" onClick={ async ()=>{
-                  let url  = "https://wbscm-ppp.simlix.org/?solicitation="+file.sol_num;
+                  let url  = "https://wbscm-ppp-uswds.simlix.org/?solicitation="+file.sol_num;
                   await navigator.clipboard.writeText(url);
                 }
               
