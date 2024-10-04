@@ -31,7 +31,7 @@ export default function App() {
   const [searchPID, setSearchPID] = useState("");
   const [searchAwardId, setSearchAwardId] = useState("");
   const [searchActiveSol, setSearchActiveSol] = useState("");
-  const [awardDate, setSearchAwardDate] = useState("");
+  const [searchAwardDate, setSearchAwardDate] = useState("");
   const[searchDocumentCategory, setSearchDocumentCategory] = useState("Solicitation");
   const [searchOfferDate, setSearchOfferDate] = useState("");
   const [searchPackageNum, setSearchPackageNum] = useState("");
@@ -66,16 +66,37 @@ export default function App() {
   
   function handleSearch()
   {
+    let searchParameters  ={
+      
+      sol_num: searchSolNum,
+      pId: searchPID,
+      awardId: searchAwardId, 
+      active: searchActiveSol,
+      awardDate: searchAwardDate,
+      docCategory: searchDocumentCategory,
+      offerDate: searchOfferDate,
+      pkgNum: searchPackageNum,
+      prodCategory: searchProductCategory,
+      prodName: searchProductName,
+      publishDate: searchPublishDate,
+      purchaseGroup: searchPurchaseGroup,
+      solMethod: searchSolMethod,
+      latest: searchLatestVersion,
+      perfDate: searchPerformanceDate
 
+    };
     setSearchPerformanceDate(document.getElementById("perf-date").value);
-    
+
     console.log("searchSolNum= " + searchSolNum, " | searchPID= " + searchPID, " | searchAwardId= " + searchAwardId," | searchActiveSol= " + searchActiveSol, " | awardDate= " + 
-    awardDate, " | searchDocumentCategory= " + searchDocumentCategory, 
+    sear, " | searchDocumentCategory= " + searchDocumentCategory, 
     " | searchOfferDate= " + searchOfferDate, " | searchPackageNum= " + searchPackageNum, " | searchProductCategory= " + searchProductCategory, " | searchProductName= " + searchProductName, 
     " | searchPublishDate= " + searchPublishDate, " | searchPurchaseGroup= " + searchPurchaseGroup, " | searchSolMethod= " + searchSolMethod, " | searchLatestionVersion= " + searchLatestVersion,
     " | searchPerformanceDate= " +  searchPerformanceDate);
 
-
+    if(searchSolNum.length > 0 )
+    {
+      se
+    }
 
  
   }
@@ -385,12 +406,9 @@ export default function App() {
 
   }
 
-  const requestSearch = (searchedVal) => {
+  function performSearch(searchedVal) {
 
-   
     const filteredRows = filter.filter((row) => {
-
-     
 
       if( row.sol_num.toString().toLowerCase().includes(searchedVal.toString().toLowerCase()) )
       {
@@ -454,7 +472,7 @@ export default function App() {
             </div>  
             <div className="grid-row grid-gap-1">
               <div>
-                <select className='usa-select' title="Product Category" id="input-prod_cat" name="input-prod_cat"  onChange={(e) => setSearchProductCategory(e.target.value)}  defaultValue={" "}>
+                <select className='usa-select' title="Product Category" id="input-prod_cat" name="input-prod_cat"  onChange={(e) => setSearchProductCategory(e.target.value)}  defaultValue={searchProductCategory}>
                       <option value="Meat">
                     Meat
                     </option>
@@ -464,13 +482,13 @@ export default function App() {
                 </select>
 
               </div>
-              <div><input className='usa-input' title="Product Name" id="input-prod_name" name="input-prod_name" placeholder="Product Name" type="text" onChange={(e) => setSearchProductName(e.target.value)} /></div>
+              <div><input className='usa-input' title="Product Name" id="input-prod_name" name="input-prod_name" placeholder="Product Name" type="text" onChange={(e) => setSearchProductName(e.target.value)} defaultValue={searchProductName}/></div>
           
 
   
        
              <div> 
-              <select className="usa-select" title="Publish Date" id="input-pub_dt" name="input-pub_dt"  onChange={(e) => setSearchPublishDate(e.target.value)} defaultValue={pubDateValue}>
+              <select className="usa-select" title="Publish Date" id="input-pub_dt" name="input-pub_dt"  onChange={(e) => setSearchPublishDate(e.target.value)} defaultValue={searchPublishDate}>
                   <option value="Any">
                   Any
                 </option>
@@ -489,7 +507,7 @@ export default function App() {
               </select>
             </div>
             <div>
-              <select className="usa-select" title="Document Type" id="input-doc_cat" name="input-doc_ca"  onChange={(e) => setSearchDocumentCategory(e.target.value)}  defaultValue={docCategory}>
+              <select className="usa-select" title="Document Type" id="input-doc_cat" name="input-doc_ca"  onChange={(e) => setSearchDocumentCategory(e.target.value)}  defaultValue={searchDocumentCategory}>
                         <option value="Solicitations">
                         Solicitations
                       </option>
@@ -528,7 +546,7 @@ export default function App() {
                   <div className="usa-date-picker__calendar" role="application" hidden={true}></div>
                   <div className="usa-sr-only usa-date-picker__status" role="status" aria-live="polite"></div></div></div>
             <div>
-            <select className="usa-select grid-col-auto" title="Offer Date" id="input-offer_dt" name="input-Offer_dt" onChange={(e) => setSearchOfferDate(e.target.value)}  defaultValue={pubDateValue}>
+            <select className="usa-select grid-col-auto" title="Offer Date" id="input-offer_dt" name="input-Offer_dt" onChange={(e) => setSearchOfferDate(e.target.value)}  defaultValue={searchOfferDate}>
                     <option value="Any">
                     Any
                   </option>
@@ -547,7 +565,7 @@ export default function App() {
                 </select>
               </div>
               <div>
-                  <select className='usa-select grid-col-auto' title="Award Date" id="input-award_dt" name="input-award_dt"  onChange={(e) => setSearchAwardDate(e.target.value)}  defaultValue={pubDateValue}>
+                  <select className='usa-select grid-col-auto' title="Award Date" id="input-award_dt" name="input-award_dt"  onChange={(e) => setSearchAwardDate(e.target.value)}  defaultValue={searchAwardDate}>
                     <option value="Any">
                     Any
                   </option>
@@ -565,7 +583,7 @@ export default function App() {
                   </option>
                 </select>
               </div>
-              <div> <select className="usa-select grid-col-auto" title="Solicitation Method" id="input-sol_method" name="input-sol_method"  onChange={(e) => setSearchSolMethod(e.target.value)}  defaultValue={" "}>
+              <div> <select className="usa-select grid-col-auto" title="Solicitation Method" id="input-sol_method" name="input-sol_method"  onChange={(e) => setSearchSolMethod(e.target.value)}  defaultValue={searchSolMethod}>
                   <option value="RFQ">
                   RFQ
                   </option>
@@ -578,16 +596,16 @@ export default function App() {
                 </select>
               </div>
              <div data-testid="checkbox" className="usa-checkbox">
-                <input className="usa-checkbox__input" id="active_sol" type="checkbox" name="latest-sol" title="Active Solicitation"  onChange={(e) => setSearchActiveSol(e.target.value)}   />
+                <input className="usa-checkbox__input" id="active_sol" type="checkbox" name="latest-sol" title="Active Solicitation"  onChange={(e) => setSearchActiveSol(e.target.value)} />
                 <label className="usa-checkbox__label" htmlFor="active_sol">Active Solicitation</label>
               </div>
             
               </div>
               <div className="grid-row grid-gap-1">
-                <div><input className='usa-input grid-col-auto' title="Package Number" id="input-pkg_num" name="input-pkg_num" placeholder="Package Soliciation Number" type="text" onChange={(e) => setSearchPackageNum(e.target.value)} /></div>
+                <div><input className='usa-input grid-col-auto' title="Package Number" id="input-pkg_num" name="input-pkg_num" placeholder="Package Soliciation Number" type="text" onChange={(e) => setSearchPackageNum(e.target.value)} defaultValue={searchPackageNum}/></div>
                 
               <div>
-                    <select className='usa-select grid-col-auto' title="Purchasing Group" id="input-pur_grp" name="input-pur_grp"  onChange={(e) => setSearchPurchaseGroup(e.target.value)}  defaultValue={" "}>
+                    <select className='usa-select grid-col-auto' title="Purchasing Group" id="input-pur_grp" name="input-pur_grp"  onChange={(e) => setSearchPurchaseGroup(e.target.value)}  defaultValue={searchPurchaseGroup}>
                       <option value="pur_grp_1">
                       Purchase Group 1
                     </option>
