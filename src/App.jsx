@@ -66,11 +66,14 @@ export default function App() {
   
   function handleSearch()
   {
+
+    setSearchPerformanceDate(document.getElementById("perf-date").value);
+    
     console.log("searchSolNum= " + searchSolNum, " | searchPID= " + searchPID, " | searchAwardId= " + searchAwardId," | searchActiveSol= " + searchActiveSol, " | awardDate= " + 
     awardDate, " | searchDocumentCategory= " + searchDocumentCategory, 
     " | searchOfferDate= " + searchOfferDate, " | searchPackageNum= " + searchPackageNum, " | searchProductCategory= " + searchProductCategory, " | searchProductName= " + searchProductName, 
     " | searchPublishDate= " + searchPublishDate, " | searchPurchaseGroup= " + searchPurchaseGroup, " | searchSolMethod= " + searchSolMethod, " | searchLatestionVersion= " + searchLatestVersion,
-    " | searchPerformanceDate= " +  document.getElementById("perf-date").value);
+    " | searchPerformanceDate= " +  searchPerformanceDate);
 
 
 
