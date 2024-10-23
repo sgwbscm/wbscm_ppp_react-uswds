@@ -93,11 +93,6 @@ export default function App() {
     " | searchPublishDate= " + searchPublishDate, " | searchPurchaseGroup= " + searchPurchaseGroup, " | searchSolMethod= " + searchSolMethod, " | searchLatestionVersion= " + searchLatestVersion,
     " | searchPerformanceDate= " +  searchPerformanceDate);
 
-    if(searchSolNum.length > 0 )
-    {
-      se
-    }
-
  
   }
 
