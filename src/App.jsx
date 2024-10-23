@@ -93,6 +93,7 @@ export default function App() {
     " | searchPublishDate= " + searchPublishDate, " | searchPurchaseGroup= " + searchPurchaseGroup, " | searchSolMethod= " + searchSolMethod, " | searchLatestionVersion= " + searchLatestVersion,
     " | searchPerformanceDate= " +  searchPerformanceDate);
 
+    console.log("usda env build test");
  
   }
 
