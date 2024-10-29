@@ -287,7 +287,7 @@ export default function App() {
 
   async function handleCopySolURL()
   {
-    let url  = "https://d14ld2pa83tn69.cloudfront.net/?solicitation="+solURL;
+    let url  = "https://d2ovuhpmzxq259.cloudfront.net/?solicitation="+solURL;
     
 
     await navigator.clipboard.writeText(url);
@@ -651,9 +651,9 @@ export default function App() {
                 <tr key={i}>
                   <td >
                     <div className="display-inline-flex">
-                      <a  title={file.sol_num} href={"https://d14ld2pa83tn69.cloudfront.net/?solicitation="+file.sol_num}>{file.sol_num}</a>
+                      <a  title={file.sol_num} href={"https://d2ovuhpmzxq259.cloudfront.net/?solicitation="+file.sol_num}>{file.sol_num}</a>
                       <img  title="Copy Solicitation Link" onClick={ async ()=>{
-                  let url  = "https://d14ld2pa83tn69.cloudfront.net/?solicitation="+file.sol_num;
+                  let url  = "https://d2ovuhpmzxq259.cloudfront.net/?solicitation="+file.sol_num;
                   await navigator.clipboard.writeText(url);
                 }
               
