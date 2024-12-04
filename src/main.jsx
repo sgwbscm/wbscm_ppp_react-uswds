@@ -24,6 +24,19 @@ const router = createBrowserRouter([
       },
     ]
   },
+    {
+    path: "/ppp/devdsl/app",
+    element:  <App />,
+    loader:rootLoader,
+    children: [
+      {
+        path: "/:solicitation",
+        element:  <App />,
+  
+      },
+    ]
+  }
+
 ]);
 
 createRoot(document.getElementById('root')).render(
