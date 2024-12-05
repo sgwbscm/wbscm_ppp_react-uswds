@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     loader:rootLoader,
     children: [
       {
-        path: "/ppp/devdsl/app:solicitation",
+        path: "/ppp/app:solicitation",
         element:  <App />,
   
       },
