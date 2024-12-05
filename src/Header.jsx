@@ -15,7 +15,7 @@ return(
           <img
             aria-hidden="true"
             className="usa-banner__header-flag"
-            src="../img/usa-icons/us_flag_small.png"
+            src="/img/usa-icons/us_flag_small.png"
             alt=""
           />
         </div>
@@ -45,7 +45,7 @@ return(
         <div className="usa-banner__guidance tablet:grid-col-6">
           <img
             className="usa-banner__icon usa-media-block__img"
-            src="../img/usa-icons/icon-dot-gov.svg"
+            src="/img/usa-icons/icon-dot-gov.svg"
             role="img"
             alt=""
             aria-hidden="true"
