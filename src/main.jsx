@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     ]
   },
     {
-    path: "/ppp/devdsl/app",
+    path: "/ppp/app",
     element:  <App />,
     loader:rootLoader,
     children: [

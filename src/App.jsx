@@ -45,7 +45,7 @@ export default function App() {
   
   //const [serviceURL, setServiceURL] = useState("https://g0afk1o10c.execute-api.us-east-1.amazonaws.com/dev?mode=db");
   // const [serviceURL, setServiceURL] = useState("https://60iutwmkj1.execute-api.us-east-1.amazonaws.com/dev?mode=db");
-  const [serviceURL, setServiceURL] = useState("https://wbscmqasdsl.wbscm.usda.gov/ppp/devdsl/search");
+  const [serviceURL, setServiceURL] = useState("https://wbscmqasdsl.wbscm.usda.gov/ppp/search");
    //const [serviceURL, setServiceURL] = useState("https://wbscmqasdsl.wbscm.usda.gov/lambda?mode=db");
   
   const [column, setColumn] = useState([]);
@@ -290,7 +290,7 @@ export default function App() {
 
   async function handleCopySolURL()
   {
-    let url  = "https://d2ovuhpmzxq259.cloudfront.net/index.html?solicitation="+solURL;
+    let url  = "https://wbscmqasdsl.wbscm.usda.gov/ppp?solicitation="+solURL;
     
 
     await navigator.clipboard.writeText(url);
@@ -439,7 +439,7 @@ export default function App() {
         console.log("No search results : " + filteredRows.length);
 
         //check with AWS
-        setServiceURL("https://60iutwmkj1.execute-api.us-east-1.amazonaws.com/dev?mode=db"+"&qSolNum="+searchedVal);
+        setServiceURL("https://wbscmqasdsl.wbscm.usda.gov/ppp?"+"qSolNum="+searchedVal);
 
       }
       
@@ -654,13 +654,13 @@ export default function App() {
                 <tr key={i}>
                   <td >
                     <div className="display-inline-flex">
-                      <a  title={file.sol_num} href={"https://d2ovuhpmzxq259.cloudfront.net/index.html?solicitation="+file.sol_num}>{file.sol_num}</a>
+                      <a  title={file.sol_num} href={"https://wbscmqasdsl.wbscm.usda.gov/ppp?solicitation="+file.sol_num}>{file.sol_num}</a>
                       <img  title="Copy Solicitation Link" onClick={ async ()=>{
-                  let url  = "https://d2ovuhpmzxq259.cloudfront.net/index.html?solicitation="+file.sol_num;
+                  let url  = "https://wbscmqasdsl.wbscm.usda.gov/ppp?solicitation="+file.sol_num;
                   await navigator.clipboard.writeText(url);
                 }
               
-              }className="margin-05" src = "../img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/></div>  </td>
+              }className="margin-05" src = "/img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/></div>  </td>
                   <td title={file.proc_id}>{file.proc_id}</td>
                   <td title={file.offer_dt}>{file.offer_dt}</td>
                   <td title={file.sol_updt_dt}>{file.sol_updt_dt}</td>
@@ -713,7 +713,7 @@ export default function App() {
                    await navigator.clipboard.writeText(link.url);
                   }
                 
-                }className="margin-05" src = "../img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/>
+                }className="margin-05" src = "/img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/>
                <a target="_blank" href={link.url}>{link.name}</a>
                </li>
                ))}
