@@ -15,7 +15,7 @@ return(
           <img
             aria-hidden="true"
             className="usa-banner__header-flag"
-            src="/img/usa-icons/us_flag_small.png"
+            src="img/usa-icons/us_flag_small.png"
             alt=""
           />
         </div>
@@ -45,7 +45,7 @@ return(
         <div className="usa-banner__guidance tablet:grid-col-6">
           <img
             className="usa-banner__icon usa-media-block__img"
-            src="/img/usa-icons/icon-dot-gov.svg"
+            src="img/usa-icons/icon-dot-gov.svg"
             role="img"
             alt=""
             aria-hidden="true"
@@ -61,7 +61,7 @@ return(
         <div className="usa-banner__guidance tablet:grid-col-6">
           <img
             className="usa-banner__icon usa-media-block__img"
-            src="/img/usa-icons/icon-https.svg"
+            src="img/usa-icons/icon-https.svg"
             role="img"
             alt=""
             aria-hidden="true"
@@ -105,7 +105,7 @@ return(
           
           <div className="usa-logo display-inline-flex">
           
-            <img className="usda-logo-img" width="70px" height="70px" src="/img/usa-icons/usda-symbol.svg" alt="USDA Logo"/>
+            <img className="usda-logo-img" width="70px" height="70px" src="img/usa-icons/usda-symbol.svg" alt="USDA Logo"/>
         
               <em className="usa-logo__text margin-left-2 margin-top-4"><a  href="https://www.usda.gov" target="_blank" title="U.S.Department Of Agriculture">U.S.Department Of Agriculture</a></em>
              

@@ -2,9 +2,9 @@ import { useState, useEffect, useRef, Suspense} from 'react'
 import * as XLSX from "xlsx";
 import Header from './Header';
 import Footer from './Footer';
-import "../css/uswds.css";
-import "../js/uswds.js";
-import "../js/uswds-init.js"
+import "./css/uswds.css";
+import "./js/uswds.js";
+import "./js/uswds-init.js"
 
 import {
   useLoaderData,

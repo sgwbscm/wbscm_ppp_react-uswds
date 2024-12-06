@@ -25,12 +25,12 @@ const router = createBrowserRouter([
     ]
   },
     {
-    path: "/ppp/app",
+    path: "/ppp",
     element:  <App />,
     loader:rootLoader,
     children: [
       {
-        path: "/ppp/app:solicitation",
+        path: "/ppp:solicitation",
         element:  <App />,
   
       },

@@ -62,7 +62,7 @@ return (
     <div className="grid-container">
       <div className="usa-footer__logo grid-row grid-gap-2">
         <div className="grid-col-auto">
-          <img width="50px" height="50px" className="usa-footer__logo-img" src="/img/usa-icons/usda-symbol.svg" alt="" />
+          <img width="50px" height="50px" className="usa-footer__logo-img" src="img/usa-icons/usda-symbol.svg" alt="" />
         </div>
         <div className="grid-col-auto">
         <p className="usa-footer__logo-heading margin-left-2">U.S Department Of Agriculture</p>
