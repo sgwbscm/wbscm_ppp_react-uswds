@@ -314,7 +314,7 @@ export default function App() {
 
   async function handleCopySolURL()
   {
-    let url  = qHref+"/ppp?solicitation="+solURL;
+    let url  = qHref;
     
 
     await navigator.clipboard.writeText(url);
@@ -678,10 +678,10 @@ export default function App() {
                 <tr key={i}>
                   <td >
                     <div className="display-inline-flex">
-                      <a  title={file.sol_num} href={qHref+"?solicitation="+file.sol_num}>{file.sol_num}</a>
+                      <a  title={file.sol_num} href={url.origin+"/ppp?solicitation="+file.sol_num}>{file.sol_num}</a>
                       <img  title="Copy Solicitation Link" onClick={ async ()=>{
-                  let url  = qHref+"?solicitation="+file.sol_num;
-                  await navigator.clipboard.writeText(url);
+                  let url1  = url.origin+"/ppp?solicitation="+file.sol_num;
+                  await navigator.clipboard.writeText(url1);
                 }
               
               }className="margin-05" src = "/ppp/img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/></div>  </td>
