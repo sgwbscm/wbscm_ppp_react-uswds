@@ -660,7 +660,7 @@ export default function App() {
                   await navigator.clipboard.writeText(url);
                 }
               
-              }className="margin-05" src = "/img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/></div>  </td>
+              }className="margin-05" src = "/ppp/img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/></div>  </td>
                   <td title={file.proc_id}>{file.proc_id}</td>
                   <td title={file.offer_dt}>{file.offer_dt}</td>
                   <td title={file.sol_updt_dt}>{file.sol_updt_dt}</td>
@@ -713,7 +713,7 @@ export default function App() {
                    await navigator.clipboard.writeText(link.url);
                   }
                 
-                }className="margin-05" src = "/img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/>
+                }className="margin-05" src = "/ppp/img/usa-icons/content_copy.svg" alt="Copy Solicitation Link" width="15px" height="15px"/>
                <a target="_blank" href={link.url}>{link.name}</a>
                </li>
                ))}
