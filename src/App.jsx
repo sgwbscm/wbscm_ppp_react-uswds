@@ -34,7 +34,7 @@ export default function App() {
   qHrefDefault = "https://kv6s6t1tel.execute-api.us-east-1.amazonaws.com/devdsl/lambda";
  }
  else{
-  qHrefDefault = qHref+"/search"
+  qHrefDefault = url.origin+"/ppp/search"
  }
 
  const [serviceURL, setServiceURL] = useState(qHrefDefault);
