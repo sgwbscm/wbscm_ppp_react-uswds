@@ -13,9 +13,9 @@ import {
 export async function loader({request})
 {
   const url = new URL(request.url);
-  const qSolicitation = url.searchParams.get("solicitation");
-
-  return {qSolicitation};
+  
+  console.log(url);
+  return {url};
 }
 
 function Loading() {
@@ -25,7 +25,19 @@ function Loading() {
 
 export default function App() {
   //test 2
-  const { qSolicitation } = useLoaderData();
+  const { url } = useLoaderData();
+  const qSolicitation = url.searchParams.get("solicitation");
+  const qHref = url.href;
+  let qHrefDefault = "";
+ if(qHref.includes("localhost"))
+ {
+  qHrefDefault = "https://kv6s6t1tel.execute-api.us-east-1.amazonaws.com/devdsl/lambda";
+ }
+ else{
+  qHrefDefault = qHref+"/search"
+ }
+
+ const [serviceURL, setServiceURL] = useState(qHrefDefault);
   
   const [searchSolNum, setSearchSolNum] = useState("");
   const [searchPID, setSearchPID] = useState("");
@@ -42,10 +54,11 @@ export default function App() {
   const [searchSolMethod, setSearchSolMethod] = useState("RFQ");
   const [searchLatestVersion, setSearchLatestVersion] = useState("");
   const [searchPerformanceDate, setSearchPerformanceDate] = useState("");
+
   
   //const [serviceURL, setServiceURL] = useState("https://g0afk1o10c.execute-api.us-east-1.amazonaws.com/dev?mode=db");
   // const [serviceURL, setServiceURL] = useState("https://60iutwmkj1.execute-api.us-east-1.amazonaws.com/dev?mode=db");
-  const [serviceURL, setServiceURL] = useState("https://wbscmsbx.wbscm.usda.gov/ppp/search");
+
    //const [serviceURL, setServiceURL] = useState("https://wbscmsbx.wbscm.usda.gov/lambda?mode=db");
   
   const [column, setColumn] = useState([]);
@@ -234,12 +247,22 @@ export default function App() {
 
     const fetchData = async() => {
 
-      const result = await fetch(serviceURL);
+      let result = "";
+
+      if(qSolicitation != null && qSolicitation.length > 0){
+        result = await fetch(serviceURL+"?solicitation="+qSolicitation);
+       // console.log(result.json);
+
+      }else
+      {
+         result = await fetch(serviceURL)
+      }
+     
       result.json().then(data => {
         
         if(qSolicitation != null && qSolicitation.length > 0)
     {
-   
+      /*
        
         const qFilter = data.filter((row) =>{
           
@@ -252,11 +275,12 @@ export default function App() {
         
       
           }});
+        */
 
-
-        setFilter(qFilter);
-        setFiles(qFilter);
+        setFilter(data);
+        setFiles(data);
         setColumn(Object.keys(data[0]));
+        
     }else{
 
        //console.log(data);
@@ -290,7 +314,7 @@ export default function App() {
 
   async function handleCopySolURL()
   {
-    let url  = "https://wbscmsbx.wbscm.usda.gov/ppp?solicitation="+solURL;
+    let url  = qHref+"/ppp?solicitation="+solURL;
     
 
     await navigator.clipboard.writeText(url);
@@ -439,7 +463,7 @@ export default function App() {
         console.log("No search results : " + filteredRows.length);
 
         //check with AWS
-        setServiceURL("https://wbscmsbx.wbscm.usda.gov/ppp?"+"qSolNum="+searchedVal);
+        setServiceURL(qHref+"/ppp?"+"qSolNum="+searchedVal);
 
       }
       
@@ -654,9 +678,9 @@ export default function App() {
                 <tr key={i}>
                   <td >
                     <div className="display-inline-flex">
-                      <a  title={file.sol_num} href={"https://wbscmsbx.wbscm.usda.gov/ppp?solicitation="+file.sol_num}>{file.sol_num}</a>
+                      <a  title={file.sol_num} href={qHref+"?solicitation="+file.sol_num}>{file.sol_num}</a>
                       <img  title="Copy Solicitation Link" onClick={ async ()=>{
-                  let url  = "https://wbscmsbx.wbscm.usda.gov/ppp?solicitation="+file.sol_num;
+                  let url  = qHref+"?solicitation="+file.sol_num;
                   await navigator.clipboard.writeText(url);
                 }
               
