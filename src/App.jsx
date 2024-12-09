@@ -26,7 +26,7 @@ export default function App() {
   const qSolicitation = url.searchParams.get("solicitation");
   const qHref = url.href;
   let qHrefDefault = "";
-  if (qHref.includes("localhost")) {
+  if (qHref.includes("localhost") ||qHref.includes("amazonaws")) {
     qHrefDefault = "https://kv6s6t1tel.execute-api.us-east-1.amazonaws.com/devdsl/lambda";
   }
   else {
