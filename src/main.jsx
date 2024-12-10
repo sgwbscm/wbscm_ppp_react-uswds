@@ -9,6 +9,13 @@ import {
 import Root, { loader as rootLoader } from "./App.jsx";
 import { StrictMode } from 'react';
 
+let hostName = location.hostname;
+console.log(hostName);
+let appPath = "";
+if(hostName.includes("wbscmsbx"))
+{
+  appPath = "wbscm-app-devdsl-ppp-external";
+}
 const router = createBrowserRouter([
   
 
@@ -25,7 +32,7 @@ const router = createBrowserRouter([
     ]
   },
     {
-    path: "/ppp",
+    path: "/"+appPath+"/ppp",
     element:  <App />,
     loader:rootLoader,
     children: [
