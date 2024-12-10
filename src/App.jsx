@@ -27,7 +27,7 @@ export default function App() {
   const qHref = url.href;
   let qHrefDefault = "";
   if (qHref.includes("localhost") ||qHref.includes("amazonaws")) {
-    qHrefDefault = "https://kv6s6t1tel.execute-api.us-east-1.amazonaws.com/devdsl/lambda";
+    qHrefDefault = "https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda";
   }
   else {
     qHrefDefault = url.origin + "/ppp/search"

@@ -12,7 +12,7 @@ import { StrictMode } from 'react';
 let hostName = location.hostname;
 console.log(hostName);
 let appPath = "";
-if(hostName.includes("wbscmsbx"))
+if(hostName.includes("localhost") || hostName.includes("wbscmsbx"))
 {
   appPath = "wbscm-app-devdsl-ppp-external";
 }
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     loader:rootLoader,
     children: [
       {
-        path: "/ppp:solicitation",
+        path: "/"+appPath+"/ppp:solicitation",
         element:  <App />,
   
       },
