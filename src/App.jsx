@@ -472,7 +472,6 @@ export default function App() {
                   title="Product Name"
                   id="input-prod_name"
                   name="input-prod_name"
-                  placeholder="Product Name"
                   type="text"
                   onChange={(e) => setSearchProductName(e.target.value)}
                   defaultValue={searchProductName}
