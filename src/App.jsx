@@ -411,119 +411,112 @@ export default function App() {
       <Header />
 
       <div className="grid-container">
-        <fieldset className="usa-fieldset position-relative">
-          <legend className="usa-legend text-bold">Search Options</legend>
-          <div className="grid-row grid-gap-1">
-            <div>
+        <fieldset className="usa-fieldset position-relative margin-top-neg-3">
+          <div className="grid-row grid-gap-3 ">
+            <div className="grid-col-3">
+             <label className="usa-label" htmlFor="input-sol_num">Solicitation Number</label>
               <input
-                className="usa-input grid-col-auto"
+                className="usa-input"
                 title="Solicitation Number"
                 id="input-sol_num"
                 name="input-sol_num"
-                placeholder="Solicitations Number"
                 type="text"
                 value={searchSolNum}
                 onChange={(e) => setSearchSolNum(e.target.value)}
               />
             </div>
-            <div>
+            <div className="grid-col-fill">
+              <label className="usa-label" htmlFor="input-proc_id">Procurement Instrument Identifier (PIID)</label>
               <input
-                className="usa-input grid-col-auto"
+                className="usa-input"
                 title="Procurement Instrument Identifier(PIID)"
                 id="input-proc_id"
                 name="input-proc_id"
-                placeholder="Procurement Instrument Identifier(PIID)"
                 type="text"
                 onChange={(e) => setSearchPID(e.target.value)}
               />
             </div>
-            <div>
+            <div className="grid-col-3">
+            <label className="usa-label" htmlFor="input-award_id">Award ID</label>
               <input
-                className="usa-input grid-col-auto"
+                className="usa-input"
                 title="Award ID"
                 id="input-award_id"
                 name="input-award_id"
-                placeholder="Award ID"
                 type="text"
                 onChange={(e) => setSearchAwardId(e.target.value)}
               />
             </div>
 
-            <div data-testid="checkbox" className="usa-checkbox">
-              <input
-                className="usa-checkbox__input"
-                id="latest-version"
-                type="checkbox"
-                name="latest-sol"
-                title="Latest Version"
-                onChange={(e) => setSearchLatestVersion(e.target.value)}
-              />
-              <label className="usa-checkbox__label" htmlFor="latest-version">
-                Latest Version
-              </label>
-            </div>
+            
           </div>
-          <div className="grid-row grid-gap-1">
-            <div>
-              <select
-                className="usa-select"
-                title="Product Category"
-                id="input-prod_cat"
-                name="input-prod_cat"
-                onChange={(e) => setSearchProductCategory(e.target.value)}
-                defaultValue={searchProductCategory}
-              >
-                <option value="Meat">Meat</option>
-                <option value="Vegetables">Vegetables</option>
-              </select>
+          <div className="grid-row grid-gap-4 margin-top-neg-1">
+            <div className="grid-col-3">
+              <label className="usa-label" htmlFor="input-prod_cat">Product Category</label>
+                <select
+                  className="usa-select"
+                  title="Product Category"
+                  id="input-prod_cat"
+                  name="input-prod_cat"
+                  onChange={(e) => setSearchProductCategory(e.target.value)}
+                  defaultValue={searchProductCategory}
+                >
+                  <option value="Meat">Meat</option>
+                  <option value="Vegetables">Vegetables</option>
+                </select>
+              </div>
+              <div className="grid-col-3">
+              <label className="usa-label" htmlFor="input-prod_name">Product Name</label>
+                <input
+                  className="usa-input"
+                  title="Product Name"
+                  id="input-prod_name"
+                  name="input-prod_name"
+                  placeholder="Product Name"
+                  type="text"
+                  onChange={(e) => setSearchProductName(e.target.value)}
+                  defaultValue={searchProductName}
+                />
             </div>
-            <div>
-              <input
-                className="usa-input"
-                title="Product Name"
-                id="input-prod_name"
-                name="input-prod_name"
-                placeholder="Product Name"
-                type="text"
-                onChange={(e) => setSearchProductName(e.target.value)}
-                defaultValue={searchProductName}
-              />
+            <div className="grid-col-3">
+              <label className="usa-label" htmlFor="input-pub_dt">Publish Date</label>
+                <select
+                  className="usa-select"
+                  title="Publish Date"
+                  id="input-pub_dt"
+                  name="input-pub_dt"
+                  onChange={(e) => setSearchPublishDate(e.target.value)}
+                  defaultValue={searchPublishDate}
+                >
+                  <option value="Any">Any</option>
+                  <option value="Today">Today</option>
+                  <option value="Last 30 days">Last 30 days</option>
+                  <option value="Last 60 Days">Last 60 Days</option>
+                  <option value="1 Year">1 Year</option>
+                </select>
+              </div>
+              <div className="grid-col-3">
+              <label className="usa-label" htmlFor="input-doc_cat">Document Type</label>
+                <select
+                  className="usa-select"
+                  title="Document Type"
+                  id="input-doc_cat"
+                  name="input-doc_ca"
+                  onChange={(e) => setSearchDocumentCategory(e.target.value)}
+                  defaultValue={searchDocumentCategory}
+                >
+                  <option value="Solicitations">Solicitations</option>
+                  <option value="Specifications">Specifications</option>
+                  <option value="Template">Template</option>
+                  <option value="Supporting Documents">
+                    Supporting Documents
+                  </option>
+                </select>
             </div>
-
+            
+    </div>
+    <div className="grid-row grid-gap-1 margin-top-1">
             <div>
-              <select
-                className="usa-select"
-                title="Publish Date"
-                id="input-pub_dt"
-                name="input-pub_dt"
-                onChange={(e) => setSearchPublishDate(e.target.value)}
-                defaultValue={searchPublishDate}
-              >
-                <option value="Any">Any</option>
-                <option value="Today">Today</option>
-                <option value="Last 30 days">Last 30 days</option>
-                <option value="Last 60 Days">Last 60 Days</option>
-                <option value="1 Year">1 Year</option>
-              </select>
-            </div>
-            <div>
-              <select
-                className="usa-select"
-                title="Document Type"
-                id="input-doc_cat"
-                name="input-doc_ca"
-                onChange={(e) => setSearchDocumentCategory(e.target.value)}
-                defaultValue={searchDocumentCategory}
-              >
-                <option value="Solicitations">Solicitations</option>
-                <option value="Specifications">Specifications</option>
-                <option value="Template">Template</option>
-                <option value="Supporting Documents">
-                  Supporting Documents
-                </option>
-              </select>
-            </div>
-            <div className="margin-top-1">
               <button
                 className="usa-button"
                 title="Search"
@@ -533,17 +526,16 @@ export default function App() {
                 Search
               </button>
             </div>
-            <div className="margin-top-1">
+            <div>
               <button
                 className="usa-button"
                 type="button"
-                onClick={handleHideAdavanceOptions}
-              >
+                onClick={handleHideAdavanceOptions}>
                 Advanced Search
               </button>
             </div>
 
-            <div className="margin-top-1">
+            <div>
               <button
                 className="usa-button"
                 type="button"
@@ -552,138 +544,138 @@ export default function App() {
                 Export To Excel
               </button>
             </div>
+            <div data-testid="checkbox" className="usa-checkbox">
+            <label className="usa-checkbox__label" htmlFor="latest-version">
+                Latest Version
+              </label>
+              <input
+                className="usa-checkbox__input"
+                id="latest-version"
+                type="checkbox"
+                name="latest-sol"
+               
+                onChange={(e) => setSearchLatestVersion(e.target.value)}
+              />
+            
+            </div>
           </div>
         </fieldset>
       </div>
+
       <div className="grid-container margin-top-2">
         <fieldset className="usa-fieldset" hidden={hideAdavanceOptions}>
           <legend className="usa-legend text-bold">
-            Advanced Search Options
+           <u> Advanced Search Options</u>
           </legend>
-          <div className="margin-top-1 grid-col-auto">
-            <div className="margin-top-1">
-              <label htmlFor="perf-date">Performance Period</label>
-            </div>
+       
+          <div className="grid-row grid-gap-1 margin-top-neg-2">
+
+              <div id="perf_dt_outer" className="usa-date-picker usa-date-picker--initialized grid-col-auto" data-min-date="0000-01-01">
+                  <label className="usa-label" htmlFor="input-doc_cat">Performance Period</label>
+                  <input
+                    className="usa-input usa-date-picker__internal-input"
+                    aria-labelledby="perf-date-label"
+                    aria-describedby="perf-date-hint"
+                    aria-hidden="true"
+                    tabIndex="-1"
+                    style={{ display: 'none' }}
+                  />
+                  <div className="usa-date-picker__wrapper">
+                    <input
+                      className="usa-input usa-date-picker__external-input"
+                      id="perf-date"
+                      name="perf-date"
+                      aria-labelledby="perf-date-label"
+                      aria-describedby="perf-date-hint"
+                      type="text"
+                    />
+                    <button
+                      type="button"
+                      className="usa-date-picker__button"
+                      aria-haspopup="true"
+                      aria-label="Toggle calendar"
+                    ></button>
+                    <div
+                      className="usa-date-picker__calendar"
+                      role="application"
+                      hidden={true}
+                    ></div>
+                    <div
+                      className="usa-sr-only usa-date-picker__status"
+                      role="status"
+                      aria-live="polite"
+                    ></div>
+                  </div>
+                </div>
+                <div className="grid-col-fill">
+                <label className="usa-label" htmlFor="input-offer_dt">Offer Date</label>
+                  <select
+                    className="usa-select"
+                    title="Offer Date"
+                    id="input-offer_dt"
+                    name="input-Offer_dt"
+                    onChange={(e) => setSearchOfferDate(e.target.value)}
+                    defaultValue={searchOfferDate}
+                  >
+                    <option value="Any">Any</option>
+                    <option value="Today">Today</option>
+                    <option value="Last 30 days">Last 30 days</option>
+                    <option value="Last 60 Days">Last 60 Days</option>
+                    <option value="1 Year">1 Year</option>
+                  </select>
+                </div>
+                <div className="grid-col-fill">
+                <label className="usa-label" htmlFor="input-award_dt">Award Date</label>
+                  <select
+                    className="usa-select"
+                    title="Award Date"
+                    id="input-award_dt"
+                    name="input-award_dt"
+                    onChange={(e) => setSearchAwardDate(e.target.value)}
+                    defaultValue={searchAwardDate}
+                  >
+                    <option value="Any">Any</option>
+                    <option value="Today">Today</option>
+                    <option value="Last 30 days">Last 30 days</option>
+                    <option value="Last 60 Days">Last 60 Days</option>
+                    <option value="1 Year">1 Year</option>
+                  </select>
+                </div>
+                <div className="grid-col-fill">
+                <label className="usa-label" htmlFor="input-sol_method">Solicitation Method</label>
+                  <select
+                    className="usa-select"
+                    title="Solicitation Method"
+                    id="input-sol_method"
+                    name="input-sol_method"
+                    onChange={(e) => setSearchSolMethod(e.target.value)}
+                    defaultValue={searchSolMethod}
+                  >
+                    <option value="RFQ">RFQ</option>
+                    <option value="IFB">IFB</option>
+                    <option value="Pre-RFP">Pre-RFP</option>
+                  </select>
+                </div>
+                
           </div>
-          <div className="grid-row grid-gap-1">
-            <div
-              id="perf_dt_outer"
-              className="usa-date-picker usa-date-picker--initialized"
-              data-min-date="0000-01-01"
-            >
+          <div className="grid-row grid-gap-1 margin-top-neg-2">
+          <div className="grid-col-4">
+            <label className="usa-label" htmlFor="input-pkg_num">Package Number</label>
               <input
-                className="usa-input usa-date-picker__internal-input"
-                aria-labelledby="perf-date-label"
-                aria-describedby="perf-date-hint"
-                aria-hidden="true"
-                tabIndex="-1"
-                style={{ display: 'none' }}
-              />
-              <div className="usa-date-picker__wrapper">
-                <input
-                  className="usa-input usa-date-picker__external-input"
-                  id="perf-date"
-                  name="perf-date"
-                  aria-labelledby="perf-date-label"
-                  aria-describedby="perf-date-hint"
-                  type="text"
-                />
-                <button
-                  type="button"
-                  className="usa-date-picker__button"
-                  aria-haspopup="true"
-                  aria-label="Toggle calendar"
-                ></button>
-                <div
-                  className="usa-date-picker__calendar"
-                  role="application"
-                  hidden={true}
-                ></div>
-                <div
-                  className="usa-sr-only usa-date-picker__status"
-                  role="status"
-                  aria-live="polite"
-                ></div>
-              </div>
-            </div>
-            <div>
-              <select
-                className="usa-select grid-col-auto"
-                title="Offer Date"
-                id="input-offer_dt"
-                name="input-Offer_dt"
-                onChange={(e) => setSearchOfferDate(e.target.value)}
-                defaultValue={searchOfferDate}
-              >
-                <option value="Any">Any</option>
-                <option value="Today">Today</option>
-                <option value="Last 30 days">Last 30 days</option>
-                <option value="Last 60 Days">Last 60 Days</option>
-                <option value="1 Year">1 Year</option>
-              </select>
-            </div>
-            <div>
-              <select
-                className="usa-select grid-col-auto"
-                title="Award Date"
-                id="input-award_dt"
-                name="input-award_dt"
-                onChange={(e) => setSearchAwardDate(e.target.value)}
-                defaultValue={searchAwardDate}
-              >
-                <option value="Any">Any</option>
-                <option value="Today">Today</option>
-                <option value="Last 30 days">Last 30 days</option>
-                <option value="Last 60 Days">Last 60 Days</option>
-                <option value="1 Year">1 Year</option>
-              </select>
-            </div>
-            <div>
-              {' '}
-              <select
-                className="usa-select grid-col-auto"
-                title="Solicitation Method"
-                id="input-sol_method"
-                name="input-sol_method"
-                onChange={(e) => setSearchSolMethod(e.target.value)}
-                defaultValue={searchSolMethod}
-              >
-                <option value="RFQ">RFQ</option>
-                <option value="IFB">IFB</option>
-                <option value="Pre-RFP">Pre-RFP</option>
-              </select>
-            </div>
-            <div data-testid="checkbox" className="usa-checkbox">
-              <input
-                className="usa-checkbox__input"
-                id="active_sol"
-                type="checkbox"
-                name="latest-sol"
-                title="Active Solicitation"
-                onChange={(e) => setSearchActiveSol(e.target.value)}
-              />
-              <label className="usa-checkbox__label" htmlFor="active_sol">
-                Active Solicitation
-              </label>
-            </div>
-          </div>
-          <div className="grid-row grid-gap-1">
-            <div>
-              <input
-                className="usa-input grid-col-auto"
+                className="usa-input"
                 title="Package Number"
                 id="input-pkg_num"
                 name="input-pkg_num"
-                placeholder="Package Soliciation Number"
                 type="text"
                 onChange={(e) => setSearchPackageNum(e.target.value)}
                 defaultValue={searchPackageNum}
               />
             </div>
 
-            <div>
+            <div className="grid-col-4">
+            <label className="usa-label" htmlFor="input-pur_grp">Purchasing Group</label>
               <select
-                className="usa-select grid-col-auto"
+                className="usa-select"
                 title="Purchasing Group"
                 id="input-pur_grp"
                 name="input-pur_grp"
@@ -694,6 +686,18 @@ export default function App() {
                 <option value="pur_grp_1">Purchase Group 2</option>
               </select>
             </div>
+            <div data-testid="checkbox" className="usa-checkbox margin-top-6 grid-col-4">
+                <label className="usa-checkbox__label" htmlFor="active_sol"> Active Solicitation </label>
+                  <input
+                    className="usa-checkbox__input"
+                    id="active_sol"
+                    type="checkbox"
+                    name="latest-sol"
+                    title="Active Solicitation"
+                    onChange={(e) => setSearchActiveSol(e.target.value)}
+                  />
+                 
+                </div>
           </div>
         </fieldset>
 
