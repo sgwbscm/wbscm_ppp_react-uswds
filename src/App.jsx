@@ -544,18 +544,17 @@ export default function App() {
               </button>
             </div>
             <div data-testid="checkbox" className="usa-checkbox">
-            <label className="usa-checkbox__label" htmlFor="latest-version">
-                Latest Version
-              </label>
+           
               <input
                 className="usa-checkbox__input"
                 id="latest-version"
                 type="checkbox"
                 name="latest-sol"
-               
                 onChange={(e) => setSearchLatestVersion(e.target.value)}
               />
-            
+             <label className="usa-checkbox__label" htmlFor="latest-version">
+                Latest Version
+              </label>
             </div>
           </div>
         </fieldset>
@@ -570,11 +569,10 @@ export default function App() {
           <div className="grid-row grid-gap-1 margin-top-neg-2">
 
               <div id="perf_dt_outer" className="usa-date-picker usa-date-picker--initialized grid-col-auto" data-min-date="0000-01-01">
-                  <label className="usa-label" htmlFor="input-doc_cat">Performance Period</label>
+                  <label className="usa-label" htmlFor="perf-date-internal">Performance Period</label>
                   <input
                     className="usa-input usa-date-picker__internal-input"
-                    aria-labelledby="perf-date-label"
-                    aria-describedby="perf-date-hint"
+                    id="perf-date-internal"
                     aria-hidden="true"
                     tabIndex="-1"
                     style={{ display: 'none' }}
@@ -584,8 +582,6 @@ export default function App() {
                       className="usa-input usa-date-picker__external-input"
                       id="perf-date"
                       name="perf-date"
-                      aria-labelledby="perf-date-label"
-                      aria-describedby="perf-date-hint"
                       type="text"
                     />
                     <button
@@ -686,7 +682,7 @@ export default function App() {
               </select>
             </div>
             <div data-testid="checkbox" className="usa-checkbox margin-top-6 grid-col-4">
-                <label className="usa-checkbox__label" htmlFor="active_sol"> Active Solicitation </label>
+              
                   <input
                     className="usa-checkbox__input"
                     id="active_sol"
@@ -695,7 +691,7 @@ export default function App() {
                     title="Active Solicitation"
                     onChange={(e) => setSearchActiveSol(e.target.value)}
                   />
-                 
+                   <label className="usa-checkbox__label" htmlFor="active_sol"> Active Solicitation </label>
                 </div>
           </div>
         </fieldset>
