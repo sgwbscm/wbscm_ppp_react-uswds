@@ -36,7 +36,7 @@ export default function App() {
   const [searchSolNum, setSearchSolNum] = useState('')
   const [searchPID, setSearchPID] = useState('')
   const [searchAwardId, setSearchAwardId] = useState('')
-  const [searchActiveSol, setSearchActiveSol] = useState('')
+  const [searchActiveSol, setSearchActiveSol] = useState(true)
   const [searchAwardDate, setSearchAwardDate] = useState('Any')
   const [searchDocumentCategory, setSearchDocumentCategory] =
     useState('Solicitation')
@@ -47,7 +47,7 @@ export default function App() {
   const [searchPublishDate, setSearchPublishDate] = useState('Any')
   const [searchPurchaseGroup, setSearchPurchaseGroup] = useState('')
   const [searchSolMethod, setSearchSolMethod] = useState('RFQ')
-  const [searchLatestVersion, setSearchLatestVersion] = useState('')
+  const [searchLatestVersion, setSearchLatestVersion] = useState(true)
   const [searchPerformanceDate, setSearchPerformanceDate] = useState('')
 
   const [column, setColumn] = useState([])
@@ -549,6 +549,7 @@ export default function App() {
                 type="checkbox"
                 name="latest-sol"
                 onChange={(e) => setSearchLatestVersion(e.target.checked)}
+                  checked={searchLatestVersion}
               />
              <label className="usa-checkbox__label" htmlFor="latest-version">
                 Latest Version
@@ -691,6 +692,7 @@ export default function App() {
                     name="latest-sol"
                     title="Active Solicitation"
                     onChange={(e) => setSearchActiveSol(e.target.checked)}
+                    checked={searchActiveSol}
                   />
                    <label className="usa-checkbox__label" htmlFor="active_sol"> Active Solicitation </label>
                 </div>
