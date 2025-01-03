@@ -115,7 +115,7 @@ export default function App() {
   const headers = [
     {
       id: 1,
-      label: 'Solicitation Number',
+      label: 'WBSCM Solicitation Number',
       key: 'sol_num',
     },
     {
@@ -125,12 +125,12 @@ export default function App() {
     },
     {
       id: 3,
-      label: 'Current Date Offers Are Due',
+      label: 'Offer Due Date',
       key: 'offer_dt',
     },
     {
       id: 4,
-      label: 'Updated Date',
+      label: 'Amendment Date',
       key: 'sol_updt_dt',
     },
     {
@@ -140,7 +140,7 @@ export default function App() {
     },
     {
       id: 6,
-      label: 'Document Category',
+      label: 'Document Type',
       key: 'doc_cat',
     },
     {
@@ -410,8 +410,8 @@ export default function App() {
 
       <div className="grid-container">
         <fieldset className="usa-fieldset position-relative margin-top-neg-3">
-          <div className="grid-row grid-gap-3 ">
-            <div className="grid-col-3">
+          <div className="grid-row grid-gap-1">
+            <div className="grid-col-auto">
              <label className="usa-label" htmlFor="input-sol_num">Solicitation Number</label>
               <input
                 className="usa-input"
@@ -423,7 +423,7 @@ export default function App() {
                 onChange={(e) => setSearchSolNum(e.target.value)}
               />
             </div>
-            <div className="grid-col-fill">
+            <div className="grid-col-auto">
               <label className="usa-label" htmlFor="input-proc_id">Procurement Instrument Identifier (PIID)</label>
               <input
                 className="usa-input"
@@ -434,7 +434,7 @@ export default function App() {
                 onChange={(e) => setSearchPID(e.target.value)}
               />
             </div>
-            <div className="grid-col-3">
+            <div className="grid-col-auto">
             <label className="usa-label" htmlFor="input-award_id">Award ID</label>
               <input
                 className="usa-input"
@@ -445,11 +445,25 @@ export default function App() {
                 onChange={(e) => setSearchAwardId(e.target.value)}
               />
             </div>
-
+            
+            <div className="grid-col">
+            <label className="usa-label" htmlFor="input-pur_grp">Purchasing Group</label>
+              <select
+                className="usa-select"
+                title="Purchasing Group"
+                id="input-pur_grp"
+                name="input-pur_grp"
+                onChange={(e) => setSearchPurchaseGroup(e.target.value)}
+                defaultValue={searchPurchaseGroup}
+              >
+                <option value="pur_grp_1">Purchase Group 1</option>
+                <option value="pur_grp_1">Purchase Group 2</option>
+              </select>
+            </div>
             
           </div>
-          <div className="grid-row grid-gap-4 margin-top-neg-1">
-            <div className="grid-col-3">
+          <div className="grid-row grid-gap-1 margin-top-neg-1">
+            <div className="grid-col-auto">
               <label className="usa-label" htmlFor="input-prod_cat">Product Category</label>
                 <select
                   className="usa-select"
@@ -490,7 +504,7 @@ export default function App() {
                   <option value="Vegetable Oil">Vegetable Oil</option>
                 </select>
               </div>
-              <div className="grid-col-3">
+              <div className="grid-col-auto">
               <label className="usa-label" htmlFor="input-prod_name">Product Name</label>
                 <input
                   className="usa-input"
@@ -502,7 +516,7 @@ export default function App() {
                   defaultValue={searchProductName}
                 />
             </div>
-            <div className="grid-col-3">
+            <div className="grid-col-auto">
               <label className="usa-label" htmlFor="input-pub_dt">Publish Date</label>
                 <select
                   className="usa-select"
@@ -519,7 +533,7 @@ export default function App() {
                   <option value="1 Year">1 Year</option>
                 </select>
               </div>
-              <div className="grid-col-3">
+              <div className="grid-col">
               <label className="usa-label" htmlFor="input-doc_cat">Document Type</label>
                 <select
                   className="usa-select"
@@ -541,7 +555,8 @@ export default function App() {
             
     </div>
     <div className="grid-row grid-gap-1 margin-top-1">
-            <div>
+  
+            <div className="grid-col-auto">
               <button
                 className="usa-button"
                 title="Search"
@@ -551,16 +566,7 @@ export default function App() {
                 Search
               </button>
             </div>
-            <div>
-              <button
-                className="usa-button"
-                type="button"
-                onClick={handleHideAdavanceOptions}>
-                Advanced Search
-              </button>
-            </div>
-
-            <div>
+            <div className="grid-col-auto">
               <button
                 className="usa-button"
                 type="button"
@@ -569,20 +575,44 @@ export default function App() {
                 Export To Excel
               </button>
             </div>
-            <div data-testid="checkbox" className="usa-checkbox">
-           
-              <input
-                className="usa-checkbox__input"
-                id="latest-version"
-                type="checkbox"
-                name="latest-sol"
-                onChange={(e) => setSearchLatestVersion(e.target.checked)}
-                  checked={searchLatestVersion}
-              />
-             <label className="usa-checkbox__label" htmlFor="latest-version">
-                Latest Version
-              </label>
+            <div className="grid-col-auto margin-right-15">
+              <button
+                className="usa-button"
+                type="button"
+                onClick={handleHideAdavanceOptions}>
+                Advanced Search
+              </button>
             </div>
+            <div data-testid="checkbox" className="usa-checkbox grid-col-auto margin-left-10">
+           
+           <input
+             className="usa-checkbox__input"
+             id="latest-version"
+             type="checkbox"
+             name="latest-sol"
+             onChange={(e) => setSearchLatestVersion(e.target.checked)}
+               checked={searchLatestVersion}
+           />
+          <label className="usa-checkbox__label" htmlFor="latest-version">
+             Latest Version
+           </label>
+         </div>
+
+         <div data-testid="checkbox" className="usa-checkbox grid-col-auto">
+           
+           <input
+             className="usa-checkbox__input"
+             id="active_sol"
+             type="checkbox"
+             name="latest-sol"
+             title="Active Solicitation"
+             onChange={(e) => setSearchActiveSol(e.target.checked)}
+             checked={searchActiveSol}
+           />
+            <label className="usa-checkbox__label" htmlFor="active_sol"> Active Solicitation </label>
+         </div>
+         
+         
           </div>
         </fieldset>
       </div>
@@ -596,7 +626,7 @@ export default function App() {
           <div className="grid-row grid-gap-1 margin-top-neg-2">
 
               <div id="perf_dt_outer" className="usa-date-picker usa-date-picker--initialized grid-col-auto" data-min-date="0000-01-01">
-                  <label className="usa-label" htmlFor="perf-date-internal">Performance Period</label>
+                  <label className="usa-label" htmlFor="perf-date-internal">Period of Performance</label>
                   <input
                     className="usa-input usa-date-picker__internal-input"
                     id="perf-date-internal"
@@ -632,8 +662,8 @@ export default function App() {
                     ></div>
                   </div>
                 </div>
-                <div className="grid-col-fill">
-                <label className="usa-label" htmlFor="input-offer_dt">Offer Date</label>
+                <div className="grid-col">
+                <label className="usa-label" htmlFor="input-offer_dt">Offers Due Date</label>
                   <select
                     className="usa-select"
                     title="Offer Date"
@@ -649,8 +679,8 @@ export default function App() {
                     <option value="1 Year">Last 1 Year</option>
                   </select>
                 </div>
-                <div className="grid-col-fill">
-                <label className="usa-label" htmlFor="input-award_dt">Award Date</label>
+                <div className="grid-col-auto">
+                <label className="usa-label" htmlFor="input-award_dt">Award Announcement Date</label>
                   <select
                     className="usa-select"
                     title="Award Date"
@@ -666,7 +696,7 @@ export default function App() {
                     <option value="1 Year">1 Year</option>
                   </select>
                 </div>
-                <div className="grid-col-fill">
+                <div className="grid-col-auto">
                 <label className="usa-label" htmlFor="input-sol_method">Solicitation Method</label>
                   <select
                     className="usa-select"
@@ -681,11 +711,8 @@ export default function App() {
                     <option value="RFQ">RFQ</option>
                   </select>
                 </div>
-                
-          </div>
-          <div className="grid-row grid-gap-1 margin-top-neg-2">
-          <div className="grid-col-4">
-            <label className="usa-label" htmlFor="input-pkg_num">Package Number</label>
+                <div className="grid-col-auto">
+            <label className="usa-label" htmlFor="input-pkg_num">Package Solicitation Number</label>
               <input
                 className="usa-input"
                 title="Package Number"
@@ -696,34 +723,12 @@ export default function App() {
                 defaultValue={searchPackageNum}
               />
             </div>
+                
+          </div>
+          <div className="grid-row grid-gap-1 margin-top-neg-2">
+        
 
-            <div className="grid-col-4">
-            <label className="usa-label" htmlFor="input-pur_grp">Purchasing Group</label>
-              <select
-                className="usa-select"
-                title="Purchasing Group"
-                id="input-pur_grp"
-                name="input-pur_grp"
-                onChange={(e) => setSearchPurchaseGroup(e.target.value)}
-                defaultValue={searchPurchaseGroup}
-              >
-                <option value="pur_grp_1">Purchase Group 1</option>
-                <option value="pur_grp_1">Purchase Group 2</option>
-              </select>
-            </div>
-            <div data-testid="checkbox" className="usa-checkbox margin-top-6 grid-col-4">
-              
-                  <input
-                    className="usa-checkbox__input"
-                    id="active_sol"
-                    type="checkbox"
-                    name="latest-sol"
-                    title="Active Solicitation"
-                    onChange={(e) => setSearchActiveSol(e.target.checked)}
-                    checked={searchActiveSol}
-                  />
-                   <label className="usa-checkbox__label" htmlFor="active_sol"> Active Solicitation </label>
-                </div>
+          
           </div>
         </fieldset>
 
