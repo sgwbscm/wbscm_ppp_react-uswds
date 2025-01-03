@@ -37,14 +37,14 @@ export default function App() {
   const [searchPID, setSearchPID] = useState('')
   const [searchAwardId, setSearchAwardId] = useState('')
   const [searchActiveSol, setSearchActiveSol] = useState('')
-  const [searchAwardDate, setSearchAwardDate] = useState('')
+  const [searchAwardDate, setSearchAwardDate] = useState('Any')
   const [searchDocumentCategory, setSearchDocumentCategory] =
     useState('Solicitation')
-  const [searchOfferDate, setSearchOfferDate] = useState('')
+  const [searchOfferDate, setSearchOfferDate] = useState('Any')
   const [searchPackageNum, setSearchPackageNum] = useState('')
   const [searchProductCategory, setSearchProductCategory] = useState('')
   const [searchProductName, setSearchProductName] = useState('')
-  const [searchPublishDate, setSearchPublishDate] = useState('')
+  const [searchPublishDate, setSearchPublishDate] = useState('Any')
   const [searchPurchaseGroup, setSearchPurchaseGroup] = useState('')
   const [searchSolMethod, setSearchSolMethod] = useState('RFQ')
   const [searchLatestVersion, setSearchLatestVersion] = useState('')
@@ -87,14 +87,14 @@ export default function App() {
       latest: searchLatestVersion,
       perfDate: searchPerformanceDate,
     }
-    setSearchPerformanceDate(document.getElementById('perf-date').value)
+    //setSearchPerformanceDate(document.getElementById('perf-date').value)
 
     console.log(
       'searchSolNum= ' + searchSolNum,
       ' | searchPID= ' + searchPID,
       ' | searchAwardId= ' + searchAwardId,
       ' | searchActiveSol= ' + searchActiveSol,
-      ' | awardDate= ' + sear,
+      ' | awardDate= ' + searchAwardDate,
       ' | searchDocumentCategory= ' + searchDocumentCategory,
       ' | searchOfferDate= ' + searchOfferDate,
       ' | searchPackageNum= ' + searchPackageNum,
@@ -106,8 +106,6 @@ export default function App() {
       ' | searchLatestionVersion= ' + searchLatestVersion,
       ' | searchPerformanceDate= ' + searchPerformanceDate,
     )
-
-    console.log('usda env1')
   }
 
   function handleLatestVersion() {}
@@ -550,7 +548,7 @@ export default function App() {
                 id="latest-version"
                 type="checkbox"
                 name="latest-sol"
-                onChange={(e) => setSearchLatestVersion(e.target.value)}
+                onChange={(e) => setSearchLatestVersion(e.target.checked)}
               />
              <label className="usa-checkbox__label" htmlFor="latest-version">
                 Latest Version
@@ -576,6 +574,8 @@ export default function App() {
                     aria-hidden="true"
                     tabIndex="-1"
                     style={{ display: 'none' }}
+
+
                   />
                   <div className="usa-date-picker__wrapper">
                     <input
@@ -583,6 +583,7 @@ export default function App() {
                       id="perf-date"
                       name="perf-date"
                       type="text"
+                      onFocus={(e) => setSearchPerformanceDate(e.target.value)}
                     />
                     <button
                       type="button"
@@ -689,7 +690,7 @@ export default function App() {
                     type="checkbox"
                     name="latest-sol"
                     title="Active Solicitation"
-                    onChange={(e) => setSearchActiveSol(e.target.value)}
+                    onChange={(e) => setSearchActiveSol(e.target.checked)}
                   />
                    <label className="usa-checkbox__label" htmlFor="active_sol"> Active Solicitation </label>
                 </div>
