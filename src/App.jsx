@@ -137,7 +137,7 @@ export default function App() {
     },
     {
       id: 5,
-      label: 'Material Group',
+      label: 'Product Category',
       key: 'mat_grp',
     },
     {
