@@ -459,8 +459,35 @@ export default function App() {
                   onChange={(e) => setSearchProductCategory(e.target.value)}
                   defaultValue={searchProductCategory}
                 >
-                  <option value="Meat">Meat</option>
+                  <option value="BAGS">BAGS</option>
+                  <option value="Beef">Beef</option>
+                  <option value="Bison">Bison</option>
+                  <option value="Bulk Grain, Fats & Oils">Bulk Grain, Fats & Oils</option>
+                  <option value="Cereal">Cereal</option>
+                  <option value="Dairy Products">Dairy Products</option>
+                  <option value="Egg Products">Egg Products</option>
+                  <option value="Fish and Seafood">Fish and Seafood</option>
+                  <option value="Flour">Flour</option>
+                  <option value="Fruit">Fruit</option>
+                  <option value="Grain & Oilseed Products">Grain & Oilseed Products</option>
+                  <option value="Ham">Ham</option>
+                  <option value="Lamb">Lamb</option>
+                  <option value="Misc">Misc</option>
+                  <option value="Nuts, Nut & Seed Butters">Nuts, Nut & Seed Butters</option>
+                  <option value="Other Meat Products">Other Meat Products</option>
+                  <option value="Pancakes">Pancakes</option>
+                  <option value="Pasta">Pasta</option>
+                  <option value="Peas, Beans & Lentils">Peas, Beans & Lentils</option>
+                  <option value="Pork">Pork</option>
+                  <option value="Poultry">Poultry</option>
+                  <option value="Service Contracts - Domestic">Service Contracts - Domestic</option>
+                  <option value="Service Contracts - International">Meat</option>
+                  <option value="Vegetables">Service Contracts - International</option>
+                  <option value="Services Domestic">Services Domestic</option>
+                  <option value="Services International">Services International</option>
+                  <option value="Tortillas">Tortillas</option>
                   <option value="Vegetables">Vegetables</option>
+                  <option value="Vegetable Oil">Vegetable Oil</option>
                 </select>
               </div>
               <div className="grid-col-3">
@@ -503,6 +530,7 @@ export default function App() {
                   defaultValue={searchDocumentCategory}
                 >
                   <option value="Solicitations">Solicitations</option>
+                  <option value="Pre-Solicitation">Pre-Solicitation</option>
                   <option value="Specifications">Specifications</option>
                   <option value="Template">Template</option>
                   <option value="Supporting Documents">
@@ -616,9 +644,9 @@ export default function App() {
                   >
                     <option value="Any">Any</option>
                     <option value="Today">Today</option>
-                    <option value="Last 30 days">Last 30 days</option>
-                    <option value="Last 60 Days">Last 60 Days</option>
-                    <option value="1 Year">1 Year</option>
+                    <option value="Last 30 days">Next 30 days</option>
+                    <option value="Last 60 Days">Last 30 Days</option>
+                    <option value="1 Year">Last 1 Year</option>
                   </select>
                 </div>
                 <div className="grid-col-fill">
@@ -633,8 +661,8 @@ export default function App() {
                   >
                     <option value="Any">Any</option>
                     <option value="Today">Today</option>
-                    <option value="Last 30 days">Last 30 days</option>
-                    <option value="Last 60 Days">Last 60 Days</option>
+                    <option value="Last 30 days">30 days</option>
+                    <option value="Last 60 Days">60 Days</option>
                     <option value="1 Year">1 Year</option>
                   </select>
                 </div>
@@ -648,9 +676,9 @@ export default function App() {
                     onChange={(e) => setSearchSolMethod(e.target.value)}
                     defaultValue={searchSolMethod}
                   >
-                    <option value="RFQ">RFQ</option>
                     <option value="IFB">IFB</option>
-                    <option value="Pre-RFP">Pre-RFP</option>
+                    <option value="RFP">RFP</option>
+                    <option value="RFQ">RFQ</option>
                   </select>
                 </div>
                 
