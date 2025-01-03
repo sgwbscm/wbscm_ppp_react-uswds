@@ -456,8 +456,29 @@ export default function App() {
                 onChange={(e) => setSearchPurchaseGroup(e.target.value)}
                 defaultValue={searchPurchaseGroup}
               >
-                <option value="pur_grp_1">Purchase Group 1</option>
-                <option value="pur_grp_1">Purchase Group 2</option>
+                <option value="AMS-DAIRY">AMS-DAIRY</option>
+                <option value="AMS-DOMESTIC">AMS-DOMESTIC</option>
+                <option value="AMS-FA Comm Proc">AMS-FA Comm Proc</option>
+                <option value="AMS-FRUIT & VEG">AMS-FRUIT & VEG</option>
+                <option value="AMS-INTL BULK">AMS-INTL BULK</option>
+                <option value="AMS-INTL GENERAL">AMS-INTL GENERAL</option>
+                <option value="AMS-INTL PACKAGED">AMS-INTL PACKAGED</option>
+                <option value="AMS-INTL PKGNG MTL">AMS-INTL PKGNG MTL</option>
+                <option value="AMS-INTL SERVICES">AMS-INTL SERVICES</option>
+                <option value="AMS-LIVESTOCK">AMS-LIVESTOCK</option>
+               
+                <option value="AMS-POULTRY">AMS-POULTRY</option>
+                <option value="CCC- COMMODITY">CCC- COMMODITY</option>
+                <option value="CCC-ADMIN">CCC-ADMIN</option>
+                <option value="FNS CMD">FNS CMD</option>
+                <option value="FNS-FA Publ Vouch">FNS-FA Publ Vouch</option>
+               
+                <option value="FNS-GROUP">FNS-GROUP</option>
+                <option value="FREIGHT AID">FREIGHT AID</option>
+                <option value="FREIGHT DOMESTIC">FREIGHT DOMESTIC</option>
+                <option value="FREIGHT FAS">FREIGHT FAS</option>
+               
+               
               </select>
             </div>
             
