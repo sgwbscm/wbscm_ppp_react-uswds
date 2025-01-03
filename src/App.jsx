@@ -495,8 +495,7 @@ export default function App() {
                   <option value="Pork">Pork</option>
                   <option value="Poultry">Poultry</option>
                   <option value="Service Contracts - Domestic">Service Contracts - Domestic</option>
-                  <option value="Service Contracts - International">Meat</option>
-                  <option value="Vegetables">Service Contracts - International</option>
+                  <option value="Service Contracts - International">Service Contracts - International</option>
                   <option value="Services Domestic">Services Domestic</option>
                   <option value="Services International">Services International</option>
                   <option value="Tortillas">Tortillas</option>
