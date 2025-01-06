@@ -18,6 +18,8 @@ export default function App() {
   const { url } = useLoaderData()
   const qSolicitation = url.searchParams.get('solicitation')
   const qHref = url.href
+
+  console.log(qHref);
   let qHrefDefault = ''
   if (qHref.includes('localhost') || qHref.includes('amazonaws')) {
     qHrefDefault =
@@ -44,45 +46,14 @@ export default function App() {
   const [searchSolMethod, setSearchSolMethod] = useState('RFQ')
   const [searchLatestVersion, setSearchLatestVersion] = useState(true)
   const [searchPerformanceDate, setSearchPerformanceDate] = useState('')
-
-  const [column, setColumn] = useState([])
   const [files, setFiles] = useState([])
-
-  const [filter, setFilter] = useState([])
-
   const [links, setLinks] = useState([])
   const [solURL, setSolURL] = useState()
   const [solURLCopied, setSolURLCopied] = useState(false)
-
-  const [sort, setSort] = useState({});
-
-  const [columnId, setColumnId] = useState(0);
-
-  // const [pubDateValue, setPubDateValue] = useState('Last 60 Days')
-
   const [hideAdavanceOptions, setHideAdavanceOptions] = useState(true)
 
-  // const [docCategory, setDocCategory] = useState('Solicitations')
-
   function handleSearch() {
-    let searchParameters = {
-      sol_num: searchSolNum,
-      pId: searchPID,
-      awardId: searchAwardId,
-      active: searchActiveSol,
-      awardDate: searchAwardDate,
-      docCategory: searchDocumentCategory,
-      offerDate: searchOfferDate,
-      pkgNum: searchPackageNum,
-      prodCategory: searchProductCategory,
-      prodName: searchProductName,
-      publishDate: searchPublishDate,
-      purchaseGroup: searchPurchaseGroup,
-      solMethod: searchSolMethod,
-      latest: searchLatestVersion,
-      perfDate: searchPerformanceDate,
-    }
-    //setSearchPerformanceDate(document.getElementById('perf-date').value)
+
 
     console.log(
       'searchSolNum= ' + searchSolNum,
@@ -103,91 +74,12 @@ export default function App() {
     )
   }
 
-  const headers = [
-    {
-      id: 1,
-      label: 'WBSCM Solicitation Number',
-      key: 'sol_num',
-    },
-    {
-      id: 2,
-      label: 'Procurement Instrument Identifier',
-      key: 'proc_id',
-    },
-    {
-      id: 3,
-      label: 'Offer Due Date',
-      key: 'offer_dt',
-    },
-    {
-      id: 4,
-      label: 'Amendment Date',
-      key: 'sol_updt_dt',
-    },
-    {
-      id: 5,
-      label: 'Product Category',
-      key: 'mat_grp',
-    },
-    {
-      id: 6,
-      label: 'Document Type',
-      key: 'doc_cat',
-    },
-    {
-      id: 7,
-      label: 'Solicitation Documents',
-      key: 'doc',
-    },
-  ]
 
   function handleHideAdavanceOptions() {
     if (hideAdavanceOptions) {
       setHideAdavanceOptions(false)
     } else {
       setHideAdavanceOptions(true)
-    }
-  }
-
-  function handleHeaderClick(header) {
-
-    console.log(header);
-    if ((header.id != 5) && (header.id != 7) && (header.id != 2)) {
-      console.log(header.key + " || " + sort.keyToSort);
-      setSort({
-        keyToSort: header.key,
-
-        direction:
-          header.key === sort.keyToSort ? sort.direction === 'asc' ? 'desc' : 'asc' : 'desc',
-
-      })
-
-      setColumnId(header.id)
-      console.log(columnId);
-    }
-
-  }
-
-  function getSortedArray(arrayToSort) {
-    if (!(columnId == 4 || columnId == 3)) {
-      if (sort.direction === 'asc') {
-        return arrayToSort.sort((a, b) =>
-          a[sort.keyToSort] > b[sort.keyToSort] ? 1 : -1,
-        )
-      }
-
-      return arrayToSort.sort((a, b) =>
-        a[sort.keyToSort] > b[sort.keyToSort] ? -1 : 1,
-      )
-    } else {
-      if (sort.direction === 'asc') {
-        return arrayToSort.sort((a, b) =>
-          new Date(a[sort.keyToSort]) > new Date(b[sort.keyToSort]) ? 1 : -1,
-        )
-      }
-      return arrayToSort.sort((a, b) =>
-        new Date(a[sort.keyToSort]) > new Date(b[sort.keyToSort]) ? -1 : 1,
-      )
     }
   }
 
@@ -223,49 +115,16 @@ export default function App() {
       } else {
         result = await fetch(serviceURL)
       }
-
       result.json().then((data) => {
-        if (qSolicitation != null && qSolicitation.length > 0) {
-          /*
-           
-            const qFilter = data.filter((row) =>{
-              
-              
-              if(row.sol_num.toString().toLowerCase().includes(qSolicitation.toString().toLowerCase()))
-              {
-    
-                return true;
-    
-            
-          
-              }});
-            */
-
-          //setFilter(data)
-          setFiles(data)
-          console.log(Object.keys(data[0]));
-          setColumn(Object.keys(data[0]))
-
-
-        } else {
-          console.log(Object.keys(data[0]));
-          setColumn(Object.keys(data[0]))
-
-          setFiles(data)
-
-          //setFilter(data)
-
-
-        }
+        setFiles(data)
       })
     }
     fetchData()
   }, [serviceURL])
 
   async function handleCopySolURL() {
-    let url = qHref
 
-    await navigator.clipboard.writeText(url)
+    await navigator.clipboard.writeText(url.origin + '/ppp?solicitation=' + solURL)
 
     setSolURLCopied(true)
   }
@@ -344,7 +203,6 @@ export default function App() {
                 <option value="FREIGHT AID">FREIGHT AID</option>
                 <option value="FREIGHT DOMESTIC">FREIGHT DOMESTIC</option>
                 <option value="FREIGHT FAS">FREIGHT FAS</option>
-
 
               </select>
             </div>
@@ -623,7 +481,7 @@ export default function App() {
           <table className="usa-table">
             <thead>
               <tr>
-                <th data-sortable scope="col" role="columnheader" aria-sort="descending" >WBSCM Solicitation Number
+                <th title='WBSCM Solicitation Number' data-sortable scope="col" role="columnheader" aria-sort="descending" >WBSCM Solicitation Number
                   <button tabIndex="0" className="usa-table__header__button" title="Click to sort by Alphabetical in ascending order.">
                     <svg className="usa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <g className="descending" fill="transparent">
@@ -638,7 +496,7 @@ export default function App() {
                     </svg>
                   </button>
                 </th>
-                <th data-sortable scope="col" role="columnheader">
+                <th title="Procurement Instrument Identifier" data-sortable scope="col" role="columnheader">
                   Procurement Instrument Identifier
                   <button tabIndex="0" className="usa-table__header__button" title="Click to sort by Alphabetical in ascending order.">
                     <svg className="usa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -654,7 +512,7 @@ export default function App() {
                     </svg>
                   </button>
                 </th>
-                <th data-sortable cope="col" role="columnheader">
+                <th title="Offer Due Date" data-sortable cope="col" role="columnheader">
                   Offer Due Date
                   <button tabIndex="0" className="usa-table__header__button" title="Click to sort by Alphabetical in ascending order.">
                     <svg className="usa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -670,7 +528,7 @@ export default function App() {
                     </svg>
                   </button>
                 </th>
-                <th data-sortable scope="col" role="columnheader">
+                <th title="Amendment Date" data-sortable scope="col" role="columnheader">
                   Amendment Date
                   <button tabIndex="0" className="usa-table__header__button" title="Click to sort by Alphabetical in ascending order.">
                     <svg className="usa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -686,13 +544,13 @@ export default function App() {
                     </svg>
                   </button>
                 </th>
-                <th scope="col" role="columnheader">
+                <th title="Product Category" scope="col" role="columnheader">
                   Product Category
                 </th>
-                <th scope="col" role="columnheader">
+                <th title="Document Type" scope="col" role="columnheader">
                   Document Type
                 </th>
-                <th scope="col" role="columnheader">
+                <th title="Solicitation Documents" scope="col" role="columnheader">
                   Solicitation Documents
                 </th>
               </tr>
@@ -783,13 +641,20 @@ export default function App() {
                   Solication {solURL} Documents
                 </h2>
                 <div className="usa-prose">
-                  <ul
-                    id="documents-modal-description"
-                    className="usa-list usa-list--unstyled"
-                  >
-                    {links.map((link) => (
-                      <li key={link.name}>
-                        <img
+                  
+                <table className="usa-table usa-table--borderless">
+                  <thead>
+                    <tr>
+                      <th scope="col">Copy URL</th>
+                      <th scope="col">Document Link</th>
+                      <th scope="col">Document Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {links.map((link, i) => (
+                  <tr key={i}>
+
+                  <td> <img
                           title="Copy Document Link"
                           onClick={async () => {
                             await navigator.clipboard.writeText(link.url)
@@ -799,13 +664,17 @@ export default function App() {
                           alt="Copy Solicitation Link"
                           width="15px"
                           height="15px"
-                        />
-                        <a target="_blank" href={link.url}>
+                        /></td>
+                  <td><a target="_blank" href={link.url}>
                           {link.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                        </a></td>
+                  <td>{link.docType}</td>
+                  </tr>
+                  ))}
+                  </tbody>
+                </table>
+                  
+      
                 </div>
                 <div className="usa-modal__footer">
                   <ul className="usa-button-group">
