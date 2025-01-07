@@ -16,17 +16,17 @@ export async function loader({ request }) {
 export default function App() {
   //test 2
   const { url } = useLoaderData();
- // console.log(url);
+  // console.log(url);
   const qSolicitation = url.searchParams.get('solNo')
   const qHref = url.href
   let qHrefDefault = ''
   if (qHref.includes('localhost') || qHref.includes('amazonaws')) {
-  
- qHrefDefault =
-      'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda'+url.search;
-    }
- else {
-    qHrefDefault = url.origin + '/ppp/search'+url.search;
+
+    qHrefDefault =
+      'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda' + url.search;
+  }
+  else {
+    qHrefDefault = url.origin + '/ppp/search' + url.search;
   }
 
   const [serviceURL, setServiceURL] = useState(qHrefDefault)
@@ -57,17 +57,18 @@ export default function App() {
 
     //console.log("qHrefDefault = " + qHrefDefault);
     if (qHref.includes('localhost') || qHref.includes('amazonaws')) {
-  
+
       qHrefDefault =
-           'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda'
-         }
-      else {
-         qHrefDefault = url.origin + '/ppp/search'
-       }
+        'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda'
+    }
+    else {
+      qHrefDefault = url.origin + '/ppp/search'
+    }
 
 
 
     let qServiceURL = null;
+    /*
     console.log(
       'searchSolNum= ' + searchSolNum,
       ' | searchPID= ' + searchPID,
@@ -84,73 +85,119 @@ export default function App() {
       ' | searchSolMethod= ' + searchSolMethod,
       ' | searchLatestionVersion= ' + searchLatestVersion,
       ' | searchPerformanceDate= ' + searchPerformanceDate,
-    );
+    );*/
 
-    qServiceURL = qHrefDefault + "?" ;
-    if(searchSolNum != null && searchSolNum.length > 0 )
-    {
+    qServiceURL = qHrefDefault + "?";
+    if (searchSolNum != null && searchSolNum.length > 0) {
       qServiceURL = qServiceURL + 'solNo=' + searchSolNum;
     }
-    if(searchPID != null && searchPID.length > 0 )
-      {
-        qServiceURL = qServiceURL +  '&pii=' + searchPID
-      }
-      if(searchAwardId != null && searchAwardId.length > 0 )
+    if (searchPID != null && searchPID.length > 0) {
+      qServiceURL = qServiceURL + '&pii=' + searchPID
+    }
+    if (searchAwardId != null && searchAwardId.length > 0) {
+      qServiceURL = qServiceURL + '&awdId=' + searchAwardId
+    }
+    if (searchActiveSol != null) {
+      qServiceURL = qServiceURL + '&active=' + searchActiveSol
+    }
+    if (searchAwardDate != null && searchAwardDate.length > 0) {
+      qServiceURL = qServiceURL + '&awdDt=' + searchAwardDate
+    }
+    if (searchDocumentCategory != null && searchDocumentCategory.length > 0) {
+      qServiceURL = qServiceURL + '&docCat=' + searchDocumentCategory
+    }
+    if (searchOfferDate != null && searchOfferDate.length > 0) {
+
+      if(searchOfferDate.toUpperCase() === "ANY")
         {
-          qServiceURL = qServiceURL + '&awdId=' + searchAwardId
+          qServiceURL = qServiceURL + '&offDt=' + searchOfferDate
+  
+        }else {
+          
+          qServiceURL = qServiceURL + '&offDt=' + getDate(searchOfferDate);
         }
-        if(searchActiveSol != null)
-          {
-            qServiceURL = qServiceURL + '&active=' + searchActiveSol
-          }
-          if(searchAwardDate != null && searchAwardDate.length > 0 )
-            {
-              qServiceURL = qServiceURL + '&awdDt=' + searchAwardDate
-            }
-            if(searchDocumentCategory != null && searchDocumentCategory.length > 0 )
-              {
-                qServiceURL = qServiceURL + '&docCat=' + searchDocumentCategory
-              }
-              if(searchOfferDate != null && searchOfferDate.length > 0 )
-                {
-                  qServiceURL = qServiceURL + '&offDt=' + searchOfferDate
-                }
-                if(searchPackageNum != null && searchPackageNum.length > 0 )
-                  {
-                    qServiceURL = qServiceURL + '&pkgNo=' + searchPackageNum
-                  }
-                  if(searchProductCategory != null && searchProductCategory.length > 0 )
-                    {
-                      qServiceURL = qServiceURL + '&prodCat=' + searchProductCategory
-                    }
-                    if(searchProductName != null && searchProductName.length > 0 )
-                      {
-                        qServiceURL = qServiceURL + '&prodName=' + searchProductName
-                      }
-                      if(searchPublishDate != null && searchPublishDate.length > 0 )
-                        {
-                          qServiceURL = qServiceURL + '&pubDt=' + searchPublishDate
-                        }
-                        if(searchPurchaseGroup != null && searchPurchaseGroup.length > 0 )
-                          {
-                            qServiceURL = qServiceURL + '&purGrp=' + searchPurchaseGroup
-                          }if(searchSolMethod != null && searchSolMethod.length > 0 )
-                            {
-                              qServiceURL = qServiceURL +  '&solMed=' + searchSolMethod
-                            }
-                            if(searchLatestVersion != null)
-                              {
-                                qServiceURL = qServiceURL + '&latest=' + searchLatestVersion
-                              }
-                              if(searchPerformanceDate != null && searchPerformanceDate.length > 0 )
-                                {
-                                  qServiceURL = qServiceURL +  '&perfDt=' + searchPerformanceDate
-                                }
-   
+     
+    }
+    if (searchPackageNum != null && searchPackageNum.length > 0) {
+      qServiceURL = qServiceURL + '&pkgNo=' + searchPackageNum
+    }
+    if (searchProductCategory != null && searchProductCategory.length > 0) {
+      qServiceURL = qServiceURL + '&prodCat=' + searchProductCategory
+    }
+    if (searchProductName != null && searchProductName.length > 0) {
+      qServiceURL = qServiceURL + '&prodName=' + searchProductName
+    }
+    if (searchPublishDate != null && searchPublishDate.length > 0) {
+
+      if(searchPublishDate.toUpperCase() === "ANY")
+      {
+        qServiceURL = qServiceURL + '&pubDt=' + searchPublishDate
+
+      }else {
+        
+        qServiceURL = qServiceURL + '&pubDt=' + getDate(searchPublishDate);
+      }
+      
+    }
+    if (searchPurchaseGroup != null && searchPurchaseGroup.length > 0) {
+      qServiceURL = qServiceURL + '&purGrp=' + searchPurchaseGroup
+    } if (searchSolMethod != null && searchSolMethod.length > 0) {
+      qServiceURL = qServiceURL + '&solMed=' + searchSolMethod
+    }
+    if (searchLatestVersion != null) {
+      qServiceURL = qServiceURL + '&latest=' + searchLatestVersion
+    }
+    if (searchPerformanceDate != null && searchPerformanceDate.length > 0) {
+      qServiceURL = qServiceURL + '&perfDt=' + searchPerformanceDate
+    }
+
 
     console.log(qServiceURL);
     setServiceURL(qServiceURL);
 
+  }
+
+  function getDate(range)
+  {
+    console.log("Range = " + range);
+    let today = new Date();
+    
+
+    if(range.toUpperCase() === "TODAY")
+    {
+      
+    }
+    if(range.toUpperCase() === ("LAST 30 DAYS"))
+      {
+        
+        today.setDate(today.getDate() - 29);
+       
+      }
+      if(range.toUpperCase() === ("NEXT 30 DAYS"))
+        {
+          
+          today.setDate(today.getDate() + 29);
+         
+        }
+    
+      if(range.toUpperCase() === "LAST 60 DAYS")
+        {
+          today.setDate(today.getDate() - 59);
+        }
+    
+        if(range.toUpperCase() === "1 YEAR")
+          {
+            today.setFullYear(today.getFullYear()  - 1);
+          }
+          
+          let mm = String(today.getMonth() + 1 ).padStart(2, '0');
+          let dd = String(today.getDate()).padStart(2, '0');
+          let yyyy = today.getFullYear();
+      
+          
+          const formattedDate = mm +"/"+dd+"/"+yyyy;
+          console.log(formattedDate);
+          return formattedDate;
   }
 
 
@@ -188,9 +235,9 @@ export default function App() {
     const fetchData = async () => {
       let result = ''
 
-    
-        result = await fetch(serviceURL)
-  
+
+      result = await fetch(serviceURL)
+
       result.json().then((data) => {
         setFiles(data)
       })
@@ -512,9 +559,9 @@ export default function App() {
               >
                 <option value="Any">Any</option>
                 <option value="Today">Today</option>
-                <option value="Last 30 days">30 days</option>
-                <option value="Last 60 Days">60 Days</option>
-                <option value="1 Year">1 Year</option>
+                <option value="Last 30 days">Last 30 days</option>
+                <option value="Last 60 Days">Last 60 Days</option>
+                <option value="1 Year">Last 1 Year</option>
               </select>
             </div>
             <div className="grid-col-auto">
@@ -638,9 +685,9 @@ export default function App() {
                     <div className="display-inline-flex">
                       <a
                         title={file.sol_num}
-                        href= {url.origin + '/ppp?solNo=' + file.sol_num +  "&docCat=SOLICITATION"}
-                     
-       
+                        href={url.origin + '/ppp?solNo=' + file.sol_num + "&docCat=SOLICITATION"}
+
+
                       >
                         {file.sol_num}
                       </a>
@@ -648,7 +695,7 @@ export default function App() {
                         title="Copy Solicitation Link"
                         onClick={async () => {
                           let url1 =
-                            url.origin + '/ppp?solNo=' + file.sol_num +  "&docCat=SOLICITATION"
+                            url.origin + '/ppp?solNo=' + file.sol_num + "&docCat=SOLICITATION"
                           await navigator.clipboard.writeText(url1)
                         }}
                         className="margin-05"
@@ -717,40 +764,40 @@ export default function App() {
                   Solication {solURL} Documents
                 </h2>
                 <div className="usa-prose">
-                  
-                <table className="usa-table usa-table--borderless">
-                  <thead>
-                    <tr>
-                      <th scope="col">Copy URL</th>
-                      <th scope="col">Document Link</th>
-                      <th scope="col">Document Type</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {links.map((link, i) => (
-                  <tr key={i}>
 
-                  <td> <img
-                          title="Copy Document Link"
-                          onClick={async () => {
-                            await navigator.clipboard.writeText(link.url)
-                          }}
-                          className="margin-05"
-                          src="/ppp/img/usa-icons/content_copy.svg"
-                          alt="Copy Solicitation Link"
-                          width="15px"
-                          height="15px"
-                        /></td>
-                  <td><a target="_blank" href={link.url}>
-                          {link.name}
-                        </a></td>
-                  <td>{link.docType}</td>
-                  </tr>
-                  ))}
-                  </tbody>
-                </table>
-                  
-      
+                  <table className="usa-table usa-table--borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">Copy URL</th>
+                        <th scope="col">Document Link</th>
+                        <th scope="col">Document Type</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {links.map((link, i) => (
+                        <tr key={i}>
+
+                          <td> <img
+                            title="Copy Document Link"
+                            onClick={async () => {
+                              await navigator.clipboard.writeText(link.url)
+                            }}
+                            className="margin-05"
+                            src="/ppp/img/usa-icons/content_copy.svg"
+                            alt="Copy Solicitation Link"
+                            width="15px"
+                            height="15px"
+                          /></td>
+                          <td><a target="_blank" href={link.url}>
+                            {link.name}
+                          </a></td>
+                          <td>{link.docType}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+
                 </div>
                 <div className="usa-modal__footer">
                   <ul className="usa-button-group">
