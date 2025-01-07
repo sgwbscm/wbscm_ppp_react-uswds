@@ -15,17 +15,18 @@ export async function loader({ request }) {
 
 export default function App() {
   //test 2
-  const { url } = useLoaderData()
-  const qSolicitation = url.searchParams.get('solicitation')
+  const { url } = useLoaderData();
+ // console.log(url);
+  const qSolicitation = url.searchParams.get('solNo')
   const qHref = url.href
-
-  console.log(qHref);
   let qHrefDefault = ''
   if (qHref.includes('localhost') || qHref.includes('amazonaws')) {
-    qHrefDefault =
-      'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda'
-  } else {
-    qHrefDefault = url.origin + '/ppp/search'
+  
+ qHrefDefault =
+      'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda'+url.search;
+    }
+ else {
+    qHrefDefault = url.origin + '/ppp/search'+url.search;
   }
 
   const [serviceURL, setServiceURL] = useState(qHrefDefault)
@@ -43,7 +44,7 @@ export default function App() {
   const [searchProductName, setSearchProductName] = useState('')
   const [searchPublishDate, setSearchPublishDate] = useState('Any')
   const [searchPurchaseGroup, setSearchPurchaseGroup] = useState('')
-  const [searchSolMethod, setSearchSolMethod] = useState('RFQ')
+  const [searchSolMethod, setSearchSolMethod] = useState('IFB')
   const [searchLatestVersion, setSearchLatestVersion] = useState(true)
   const [searchPerformanceDate, setSearchPerformanceDate] = useState('')
   const [files, setFiles] = useState([])
@@ -54,7 +55,19 @@ export default function App() {
 
   function handleSearch() {
 
+    //console.log("qHrefDefault = " + qHrefDefault);
+    if (qHref.includes('localhost') || qHref.includes('amazonaws')) {
+  
+      qHrefDefault =
+           'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda'
+         }
+      else {
+         qHrefDefault = url.origin + '/ppp/search'
+       }
 
+
+
+    let qServiceURL = null;
     console.log(
       'searchSolNum= ' + searchSolNum,
       ' | searchPID= ' + searchPID,
@@ -71,7 +84,73 @@ export default function App() {
       ' | searchSolMethod= ' + searchSolMethod,
       ' | searchLatestionVersion= ' + searchLatestVersion,
       ' | searchPerformanceDate= ' + searchPerformanceDate,
-    )
+    );
+
+    qServiceURL = qHrefDefault + "?" ;
+    if(searchSolNum != null && searchSolNum.length > 0 )
+    {
+      qServiceURL = qServiceURL + 'solNo=' + searchSolNum;
+    }
+    if(searchPID != null && searchPID.length > 0 )
+      {
+        qServiceURL = qServiceURL +  '&pii=' + searchPID
+      }
+      if(searchAwardId != null && searchAwardId.length > 0 )
+        {
+          qServiceURL = qServiceURL + '&awdId=' + searchAwardId
+        }
+        if(searchActiveSol != null)
+          {
+            qServiceURL = qServiceURL + '&active=' + searchActiveSol
+          }
+          if(searchAwardDate != null && searchAwardDate.length > 0 )
+            {
+              qServiceURL = qServiceURL + '&awdDt=' + searchAwardDate
+            }
+            if(searchDocumentCategory != null && searchDocumentCategory.length > 0 )
+              {
+                qServiceURL = qServiceURL + '&docCat=' + searchDocumentCategory
+              }
+              if(searchOfferDate != null && searchOfferDate.length > 0 )
+                {
+                  qServiceURL = qServiceURL + '&offDt=' + searchOfferDate
+                }
+                if(searchPackageNum != null && searchPackageNum.length > 0 )
+                  {
+                    qServiceURL = qServiceURL + '&pkgNo=' + searchPackageNum
+                  }
+                  if(searchProductCategory != null && searchProductCategory.length > 0 )
+                    {
+                      qServiceURL = qServiceURL + '&prodCat=' + searchProductCategory
+                    }
+                    if(searchProductName != null && searchProductName.length > 0 )
+                      {
+                        qServiceURL = qServiceURL + '&prodName=' + searchProductName
+                      }
+                      if(searchPublishDate != null && searchPublishDate.length > 0 )
+                        {
+                          qServiceURL = qServiceURL + '&pubDt=' + searchPublishDate
+                        }
+                        if(searchPurchaseGroup != null && searchPurchaseGroup.length > 0 )
+                          {
+                            qServiceURL = qServiceURL + '&purGrp=' + searchPurchaseGroup
+                          }if(searchSolMethod != null && searchSolMethod.length > 0 )
+                            {
+                              qServiceURL = qServiceURL +  '&solMed=' + searchSolMethod
+                            }
+                            if(searchLatestVersion != null)
+                              {
+                                qServiceURL = qServiceURL + '&latest=' + searchLatestVersion
+                              }
+                              if(searchPerformanceDate != null && searchPerformanceDate.length > 0 )
+                                {
+                                  qServiceURL = qServiceURL +  '&perfDt=' + searchPerformanceDate
+                                }
+   
+
+    console.log(qServiceURL);
+    setServiceURL(qServiceURL);
+
   }
 
 
@@ -109,12 +188,9 @@ export default function App() {
     const fetchData = async () => {
       let result = ''
 
-      if (qSolicitation != null && qSolicitation.length > 0) {
-        result = await fetch(serviceURL + '?solicitation=' + qSolicitation)
-        // console.log(result.json);
-      } else {
+    
         result = await fetch(serviceURL)
-      }
+  
       result.json().then((data) => {
         setFiles(data)
       })
@@ -562,9 +638,9 @@ export default function App() {
                     <div className="display-inline-flex">
                       <a
                         title={file.sol_num}
-                        href={
-                          url.origin + '/ppp?solicitation=' + file.sol_num
-                        }
+                        href= {url.origin + '/ppp?solNo=' + file.sol_num +  "&docCat=SOLICITATION"}
+                     
+       
                       >
                         {file.sol_num}
                       </a>
@@ -572,7 +648,7 @@ export default function App() {
                         title="Copy Solicitation Link"
                         onClick={async () => {
                           let url1 =
-                            url.origin + '/ppp?solicitation=' + file.sol_num
+                            url.origin + '/ppp?solNo=' + file.sol_num +  "&docCat=SOLICITATION"
                           await navigator.clipboard.writeText(url1)
                         }}
                         className="margin-05"
