@@ -227,11 +227,22 @@ export default function App() {
   }
 
   useEffect(() => {
+
+    if(serviceURL.includes("?"))
+    {
+      if(! serviceURL.includes("latest"))
+        {
+          setSearchLatestVersion(false);
+        }
+        if(! serviceURL.includes("active"))
+        {
+          setSearchActiveSol(false);
+        }
+
+    }
+  
     const fetchData = async () => {
-      let result = ''
-
-
-      result = await fetch(serviceURL)
+      let result = await fetch(serviceURL)
 
       result.json().then((data) => {
         setFiles(data)
