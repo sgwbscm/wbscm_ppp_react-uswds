@@ -8,6 +8,7 @@ import './js/uswds-init.js'
 
 import { useLoaderData } from 'react-router-dom'
 
+
 export async function loader({ request }) {
   const url = new URL(request.url)
   return { url }
@@ -17,7 +18,6 @@ export default function App() {
   //test 2
   const { url } = useLoaderData();
   // console.log(url);
-  const qSolicitation = url.searchParams.get('solNo')
   const qHref = url.href
   let qHrefDefault = ''
   if (qHref.includes('localhost') || qHref.includes('amazonaws')) {
@@ -162,11 +162,6 @@ export default function App() {
     console.log("Range = " + range);
     let today = new Date();
     
-
-    if(range.toUpperCase() === "TODAY")
-    {
-      
-    }
     if(range.toUpperCase() === ("LAST 30 DAYS"))
       {
         
@@ -247,7 +242,7 @@ export default function App() {
 
   async function handleCopySolURL() {
 
-    await navigator.clipboard.writeText(url.origin + '/ppp?solicitation=' + solURL)
+    await navigator.clipboard.writeText(url.origin + '/ppp?solNo=' + solURL + "&docCat=SOLICITATION");
 
     setSolURLCopied(true)
   }
@@ -352,7 +347,7 @@ export default function App() {
                 <option value="Fish and Seafood">Fish and Seafood</option>
                 <option value="Flour">Flour</option>
                 <option value="Fruit">Fruit</option>
-                <option value="Grain & Oilseed Products">Grain & Oilseed Products</option>
+                <option value="Grain & Oilseed Products">Grain & Oilseed Products</option>
                 <option value="Ham">Ham</option>
                 <option value="Lamb">Lamb</option>
                 <option value="Misc">Misc</option>
@@ -635,7 +630,7 @@ export default function App() {
                     </svg>
                   </button>
                 </th>
-                <th title="Offer Due Date" data-sortable cope="col" role="columnheader">
+                <th title="Offer Due Date" data-sortable scope="col" role="columnheader">
                   Offer Due Date
                   <button tabIndex="0" className="usa-table__header__button" title="Click to sort by Alphabetical in ascending order.">
                     <svg className="usa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
