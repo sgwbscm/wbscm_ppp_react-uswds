@@ -120,7 +120,7 @@ export default function App() {
     if (searchPackageNum != null && searchPackageNum.length > 0) {
       qServiceURL = qServiceURL + '&pkgNo=' + searchPackageNum
     }
-    if (searchProductCategory != null && searchProductCategory.length > 0) {
+    if (searchProductCategory != null && searchProductCategory.length > 0 && searchProductCategory.toUpperCase() != "ANY") {
       qServiceURL = qServiceURL + '&prodCat=' + searchProductCategory
     }
     if (searchProductName != null && searchProductName.length > 0) {
@@ -138,7 +138,7 @@ export default function App() {
       }
       
     }
-    if (searchPurchaseGroup != null && searchPurchaseGroup.length > 0) {
+    if (searchPurchaseGroup != null && searchPurchaseGroup.length > 0 && searchPurchaseGroup.toUpperCase() != "ANY") {
       qServiceURL = qServiceURL + '&purGrp=' + searchPurchaseGroup
     } if (searchSolMethod != null && searchSolMethod.length > 0) {
       qServiceURL = qServiceURL + '&solMed=' + searchSolMethod
@@ -310,6 +310,7 @@ export default function App() {
                 onChange={(e) => setSearchPurchaseGroup(e.target.value)}
                 defaultValue={searchPurchaseGroup}
               >
+                 <option value="Any">Any</option>
                 <option value="AMS-DAIRY">AMS-DAIRY</option>
                 <option value="AMS-DOMESTIC">AMS-DOMESTIC</option>
                 <option value="AMS-FA Comm Proc">AMS-FA Comm Proc</option>
@@ -347,6 +348,7 @@ export default function App() {
                 onChange={(e) => setSearchProductCategory(e.target.value)}
                 defaultValue={searchProductCategory}
               >
+                <option value="Any">Any</option>
                 <option value="BAGS">BAGS</option>
                 <option value="Beef">Beef</option>
                 <option value="Bison">Bison</option>
