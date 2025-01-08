@@ -36,8 +36,7 @@ export default function App() {
   const [searchAwardId, setSearchAwardId] = useState('')
   const [searchActiveSol, setSearchActiveSol] = useState(true)
   const [searchAwardDate, setSearchAwardDate] = useState('Any')
-  const [searchDocumentCategory, setSearchDocumentCategory] =
-    useState('Solicitation')
+  const [searchDocumentCategory, setSearchDocumentCategory] = useState('Solicitation')
   const [searchOfferDate, setSearchOfferDate] = useState('Any')
   const [searchPackageNum, setSearchPackageNum] = useState('')
   const [searchProductCategory, setSearchProductCategory] = useState('')
@@ -49,8 +48,8 @@ export default function App() {
   const [searchPerformanceDate, setSearchPerformanceDate] = useState('')
   const [files, setFiles] = useState([])
   const [links, setLinks] = useState([])
-  const [solURL, setSolURL] = useState()
-  const [solURLCopied, setSolURLCopied] = useState(false)
+  const [selectedSol, setSelectedSol] = useState()
+  const [selectedSolCopied, setSelectedSolCopied] = useState(false)
   const [hideAdavanceOptions, setHideAdavanceOptions] = useState(true)
 
   function handleSearch() {
@@ -253,9 +252,9 @@ export default function App() {
 
   async function handleCopySolURL() {
 
-    await navigator.clipboard.writeText(url.origin + '/ppp?solNo=' + solURL + "&docCat=SOLICITATION");
+    await navigator.clipboard.writeText(url.origin + '/ppp?solNo=' + selectedSol + "&docCat=SOLICITATION");
 
-    setSolURLCopied(true)
+    setSelectedSolCopied(true)
   }
 
 
@@ -729,8 +728,8 @@ export default function App() {
 
                         let a = file.file_name.items
                         setLinks(a)
-                        setSolURL(file.sol_num)
-                        setSolURLCopied(false)
+                        setSelectedSol(file.sol_num)
+                        setSelectedSolCopied(false)
                         document.getElementById('documents-modal').className = 'usa-modal-wrapper';
                       }}
                     >
@@ -767,7 +766,7 @@ export default function App() {
                     id="are-you-sure-you-want-to-continue-2"
                     className="usa-anchor"
                   ></a>
-                  Solication {solURL} Documents
+                  Solication {selectedSol} Documents
                 </h2>
                 <div className="usa-prose">
 
@@ -814,7 +813,7 @@ export default function App() {
                         data-close-modal=""
                         onClick={handleCopySolURL}
                       >
-                        {!solURLCopied ? 'Copy Solicitation Link' : 'Copied!'}
+                        {!selectedSolCopied ? 'Copy Solicitation Link' : 'Copied!'}
                       </button>
                     </li>
                     <li className="usa-button-group__item">
