@@ -67,7 +67,7 @@ export default function App() {
 
 
     let qServiceURL = null;
-    /*
+    
     console.log(
       'searchSolNum= ' + searchSolNum,
       ' | searchPID= ' + searchPID,
@@ -84,7 +84,7 @@ export default function App() {
       ' | searchSolMethod= ' + searchSolMethod,
       ' | searchLatestionVersion= ' + searchLatestVersion,
       ' | searchPerformanceDate= ' + searchPerformanceDate,
-    );*/
+    );
 
     qServiceURL = qHrefDefault + "?";
     if (searchSolNum != null && searchSolNum.length > 0) {
@@ -418,7 +418,7 @@ export default function App() {
                 onChange={(e) => setSearchDocumentCategory(e.target.value)}
                 defaultValue={searchDocumentCategory}
               >
-                <option value="Solicitations">Solicitations</option>
+                <option value="Solicitation">Solicitation</option>
                 <option value="Pre-Solicitation">Pre-Solicitation</option>
                 <option value="Specifications">Specifications</option>
                 <option value="Template">Template</option>
@@ -698,14 +698,15 @@ export default function App() {
                       >
                         {file.sol_num}
                       </a>
-                      <img
+                      <img  
                         title="Copy Solicitation Link"
                         onClick={async () => {
                           let url1 =
                             url.origin + '/ppp?solNo=' + file.sol_num + "&docCat=SOLICITATION"
                           await navigator.clipboard.writeText(url1)
+
                         }}
-                        className="margin-05"
+                        className="margin-05 usa-tooltip"
                         src="/ppp/img/usa-icons/content_copy.svg"
                         alt="Copy Solicitation Link"
                         width="15px"
