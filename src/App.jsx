@@ -67,7 +67,7 @@ export default function App() {
 
 
     let qServiceURL = null;
-    
+    /*
     console.log(
       'searchSolNum= ' + searchSolNum,
       ' | searchPID= ' + searchPID,
@@ -84,7 +84,7 @@ export default function App() {
       ' | searchSolMethod= ' + searchSolMethod,
       ' | searchLatestionVersion= ' + searchLatestVersion,
       ' | searchPerformanceDate= ' + searchPerformanceDate,
-    );
+    );*/
 
     qServiceURL = qHrefDefault + "?";
     if (searchSolNum != null && searchSolNum.length > 0) {
@@ -93,12 +93,22 @@ export default function App() {
     if (searchPID != null && searchPID.length > 0) {
       qServiceURL = qServiceURL + '&pii=' + searchPID
     }
+    if (searchActiveSol != null) {
+      if(searchAwardId != null && searchAwardId.length > 0)
+      {
+        qServiceURL = qServiceURL + '&active=0'
+        setSearchActiveSol(false);
+      }else
+      {
+        qServiceURL = qServiceURL + '&active=' + searchActiveSol
+      }
+      
+    }
     if (searchAwardId != null && searchAwardId.length > 0) {
       qServiceURL = qServiceURL + '&awdId=' + searchAwardId
+    
     }
-    if (searchActiveSol != null) {
-      qServiceURL = qServiceURL + '&active=' + searchActiveSol
-    }
+   
     if (searchAwardDate != null && searchAwardDate.length > 0) {
       qServiceURL = qServiceURL + '&awdDt=' + searchAwardDate
     }
@@ -151,14 +161,14 @@ export default function App() {
     }
 
 
-    console.log(qServiceURL);
+    //console.log(qServiceURL);
     setServiceURL(qServiceURL);
 
   }
 
   function getDate(range)
   {
-    console.log("Range = " + range);
+    //console.log("Range = " + range);
     let today = new Date();
     
     if(range.toUpperCase() === ("LAST 30 DAYS"))
@@ -190,7 +200,7 @@ export default function App() {
       
           
           const formattedDate = mm +"/"+dd+"/"+yyyy;
-          console.log(formattedDate);
+          //console.log(formattedDate);
           return formattedDate;
   }
 
