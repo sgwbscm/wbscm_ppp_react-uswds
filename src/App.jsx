@@ -688,21 +688,21 @@ export default function App() {
             <tbody>
               {files.map((file, i) => (
                 <tr key={i}>
-                  <th scope="row" data-sort-value={file.sol_num}>
+                  <th scope="row" data-sort-value={file.solNo}>
                     <div className="display-inline-flex">
                       <a
-                        title={file.sol_num}
-                        href={url.origin + '/ppp?solNo=' + file.sol_num + "&docCat=SOLICITATION"}
+                        title={file.solNo}
+                        href={url.origin + '/ppp?solNo=' + file.solNo + "&docCat=SOLICITATION"}
 
 
                       >
-                        {file.sol_num}
+                        {file.solNo}
                       </a>
                       <img  
                         title="Copy Solicitation Link"
                         onClick={async () => {
                           let url1 =
-                            url.origin + '/ppp?solNo=' + file.sol_num + "&docCat=SOLICITATION"
+                            url.origin + '/ppp?solNo=' + file.solNo+ "&docCat=SOLICITATION"
                           await navigator.clipboard.writeText(url1)
 
                         }}
@@ -714,11 +714,11 @@ export default function App() {
                       />
                     </div>
                   </th>
-                  <td data-sort-value={file.proc_id}>{file.proc_id}</td>
-                  <td data-sort-value={file.offer_dt}>{file.offer_dt}</td>
-                  <td data-sort-value={file.sol_updt_dt}>{file.sol_updt_dt}</td>
-                  <td data-sort-value={file.mat_grp}>{file.mat_grp}</td>
-                  <td data-sort-value={file.doc_cat}>{file.doc_cat}</td>
+                  <td data-sort-value={file.pii}>{file.pii}</td>
+                  <td data-sort-value={file.offDt}>{file.offDt}</td>
+                  <td data-sort-value={file.amdDt}>{file.amdDt}</td>
+                  <td data-sort-value={file.prodGrp}>{file.prodGrp}</td>
+                  <td data-sort-value={file.docCat}>{file.docCat}</td>
 
                   <td title="Document Links">
                     <a
@@ -729,9 +729,9 @@ export default function App() {
                       id="documents-modal-button"
                       onClick={() => {
 
-                        let a = file.file_name.items
+                        let a = file.docLinks.items
                         setLinks(a)
-                        setSelectedSol(file.sol_num)
+                        setSelectedSol(file.solNo)
                         setSelectedSolCopied(false)
                         document.getElementById('documents-modal').className = 'usa-modal-wrapper';
                       }}
