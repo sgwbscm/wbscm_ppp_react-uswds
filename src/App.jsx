@@ -67,7 +67,7 @@ export default function App() {
 
 
     let qServiceURL = null;
-    /*
+    
     console.log(
       'searchSolNum= ' + searchSolNum,
       ' | searchPID= ' + searchPID,
@@ -84,7 +84,7 @@ export default function App() {
       ' | searchSolMethod= ' + searchSolMethod,
       ' | searchLatestionVersion= ' + searchLatestVersion,
       ' | searchPerformanceDate= ' + searchPerformanceDate,
-    );*/
+    );
 
     qServiceURL = qHrefDefault + "?";
     if (searchSolNum != null && searchSolNum.length > 0) {
@@ -110,7 +110,16 @@ export default function App() {
     }
    
     if (searchAwardDate != null && searchAwardDate.length > 0) {
-      qServiceURL = qServiceURL + '&awdDt=' + searchAwardDate
+
+      if(searchAwardDate.toUpperCase() === "ANY")
+        {
+          qServiceURL = qServiceURL + '&awdDt=' + searchAwardDate
+  
+        }else {
+          
+          qServiceURL = qServiceURL + '&awdDt=' + getDate(searchAwardDate)
+        }
+      
     }
     if (searchDocumentCategory != null && searchDocumentCategory.length > 0) {
       qServiceURL = qServiceURL + '&docCat=' + searchDocumentCategory
@@ -170,6 +179,7 @@ export default function App() {
   {
     //console.log("Range = " + range);
     let today = new Date();
+
     
     if(range.toUpperCase() === ("LAST 30 DAYS"))
       {
