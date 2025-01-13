@@ -67,6 +67,7 @@ export default function App() {
 
 
     let qServiceURL = null;
+    
     /*
     console.log(
       'searchSolNum= ' + searchSolNum,
@@ -528,7 +529,7 @@ export default function App() {
                 aria-hidden="true"
                 tabIndex="-1"
                 style={{ display: 'none' }}
-
+               
 
               />
               <div className="usa-date-picker__wrapper">
@@ -538,12 +539,14 @@ export default function App() {
                   name="perf-date"
                   type="text"
                   onFocus={(e) => setSearchPerformanceDate(e.target.value)}
+                  onChange={(e) => setSearchPerformanceDate(e.target.value)}
                 />
                 <button
                   type="button"
                   className="usa-date-picker__button"
                   aria-haspopup="true"
                   aria-label="Toggle calendar"
+                 
                 ></button>
                 <div
                   className="usa-date-picker__calendar"
