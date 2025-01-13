@@ -67,7 +67,7 @@ export default function App() {
 
 
     let qServiceURL = null;
-    
+    /*
     console.log(
       'searchSolNum= ' + searchSolNum,
       ' | searchPID= ' + searchPID,
@@ -84,7 +84,7 @@ export default function App() {
       ' | searchSolMethod= ' + searchSolMethod,
       ' | searchLatestionVersion= ' + searchLatestVersion,
       ' | searchPerformanceDate= ' + searchPerformanceDate,
-    );
+    );*/
 
     qServiceURL = qHrefDefault + "?";
     if (searchSolNum != null && searchSolNum.length > 0) {
