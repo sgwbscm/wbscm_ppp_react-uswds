@@ -344,9 +344,9 @@ export default function App() {
                 <option value="AMS-Livestock">AMS-Livestock</option>
 
                 <option value="AMS-Poultry">AMS-Poultry</option>
-                <option value="CCC- Commodity">CCC- Commodity</option>
+                <option value="CCC-Commodity">CCC-Commodity</option>
                 <option value="CCC-Admin">CCC-Admin</option>
-                <option value="FNS Cmd">FNS Cmd</option>
+                <option value="FNS-Cmd">FNS-Cmd</option>
                 <option value="FNS-Fa Publ Vouch">FNS-Fa Publ Vouch</option>
 
                 <option value="FNS-Group">FNS-Group</option>
