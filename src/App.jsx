@@ -336,8 +336,8 @@ export default function App() {
                 <option value="AMS-Domestic">AMS-Domestic</option>
                 <option value="AMS-Fa Comm Proc">AMS-Fa Comm Proc</option>
                 <option value="AMS-Fruit & Veg">AMS-Fruit & Veg</option>
-                <option value="AMS-Intl General">AMS-Intl Bulk</option>
-                <option value="AMS-INTL GENERAL">AMS-Intl General</option>
+                <option value="AMS-Intl Bulk">AMS-Intl Bulk</option>
+                <option value="AMS-Intl General">AMS-Intl General</option>
                 <option value="AMS-Intl Pacakged">AMS-Intl Pacakged</option>
                 <option value="AMS-Intl Pkgng Mtl">AMS-Intl Pkgng Mtl</option>
                 <option value="AMS-Intl Services">AMS-Intl Services</option>
