@@ -332,27 +332,27 @@ export default function App() {
                 defaultValue={searchPurchaseGroup}
               >
                  <option value="Any">Any</option>
-                <option value="AMS-DAIRY">AMS-DAIRY</option>
-                <option value="AMS-DOMESTIC">AMS-DOMESTIC</option>
-                <option value="AMS-FA Comm Proc">AMS-FA Comm Proc</option>
-                <option value="AMS-FRUIT & VEG">AMS-FRUIT & VEG</option>
-                <option value="AMS-INTL BULK">AMS-INTL BULK</option>
-                <option value="AMS-INTL GENERAL">AMS-INTL GENERAL</option>
-                <option value="AMS-INTL PACKAGED">AMS-INTL PACKAGED</option>
-                <option value="AMS-INTL PKGNG MTL">AMS-INTL PKGNG MTL</option>
-                <option value="AMS-INTL SERVICES">AMS-INTL SERVICES</option>
-                <option value="AMS-LIVESTOCK">AMS-LIVESTOCK</option>
+                <option value="AMS-Dairy">AMS-Dairy</option>
+                <option value="AMS-Domestic">AMS-Domestic</option>
+                <option value="AMS-Fa Comm Proc">AMS-Fa Comm Proc</option>
+                <option value="AMS-Fruit & Veg">AMS-Fruit & Veg</option>
+                <option value="AMS-Intl General">AMS-Intl Bulk</option>
+                <option value="AMS-INTL GENERAL">AMS-Intl General</option>
+                <option value="AMS-Intl Pacakged">AMS-Intl Pacakged</option>
+                <option value="AMS-Intl Pkgng Mtl">AMS-Intl Pkgng Mtl</option>
+                <option value="AMS-Intl Services">AMS-Intl Services</option>
+                <option value="AMS-Livestock">AMS-Livestock</option>
 
-                <option value="AMS-POULTRY">AMS-POULTRY</option>
-                <option value="CCC- COMMODITY">CCC- COMMODITY</option>
-                <option value="CCC-ADMIN">CCC-ADMIN</option>
-                <option value="FNS CMD">FNS CMD</option>
-                <option value="FNS-FA Publ Vouch">FNS-FA Publ Vouch</option>
+                <option value="AMS-Poultry">AMS-Poultry</option>
+                <option value="CCC- Commodity">CCC- Commodity</option>
+                <option value="CCC-Admin">CCC-Admin</option>
+                <option value="FNS Cmd">FNS Cmd</option>
+                <option value="FNS-Fa Publ Vouch">FNS-Fa Publ Vouch</option>
 
-                <option value="FNS-GROUP">FNS-GROUP</option>
-                <option value="FREIGHT AID">FREIGHT AID</option>
-                <option value="FREIGHT DOMESTIC">FREIGHT DOMESTIC</option>
-                <option value="FREIGHT FAS">FREIGHT FAS</option>
+                <option value="FNS-Group">FNS-Group</option>
+                <option value="Freight Aid">Freight Aid</option>
+                <option value="Freight Domestic">Freight Domestic</option>
+                <option value="Freight FAS">Freight FAS</option>
 
               </select>
             </div>
