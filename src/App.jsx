@@ -23,7 +23,7 @@ export default function App() {
   if (qHref.includes('localhost') || qHref.includes('amazonaws')) {
 
     qHrefDefault =
-      'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda' + url.search;
+      'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/devdsl/lambda' + url.search;
   }
   else {
     qHrefDefault = url.origin + '/ppp/search' + url.search;
@@ -58,7 +58,7 @@ export default function App() {
     if (qHref.includes('localhost') || qHref.includes('amazonaws')) {
 
       qHrefDefault =
-        'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/sbx/lambda'
+        'https://1gc4yepshk.execute-api.us-east-1.amazonaws.com/devdsl/lambda'
     }
     else {
       qHrefDefault = url.origin + '/ppp/search'
@@ -222,6 +222,14 @@ export default function App() {
     } else {
       setHideAdavanceOptions(true)
     }
+  }
+
+  function getTimeValue(dtStr)
+  {
+    let dt = new Date(dtStr);
+    dt.setHours(0, 0, 0, 0);
+   
+    return  dt.getTime()
   }
 
   const exportToExcel = () => {
@@ -738,8 +746,8 @@ export default function App() {
                     </div>
                   </th>
                   <td data-sort-value={file.pii}>{file.pii}</td>
-                  <td data-sort-value={file.offDt}>{file.offDt}</td>
-                  <td data-sort-value={file.amdDt}>{file.amdDt}</td>
+                  <td data-sort-value={getTimeValue(file.offDt)}>{file.offDt}</td>
+                  <td data-sort-value={getTimeValue(file.amdDt)}>{file.amdDt}</td>
                   <td data-sort-value={file.prodGrp}>{file.prodGrp}</td>
                   <td data-sort-value={file.docCat}>{file.docCat}</td>
 
