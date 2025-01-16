@@ -190,6 +190,7 @@ export default function App() {
       }
       if(range.toUpperCase() === ("NEXT 30 DAYS"))
         {
+          console.log("processing next 30");
           
           today.setDate(today.getDate() + 29);
          
@@ -580,7 +581,7 @@ export default function App() {
               >
                 <option value="Any">Any</option>
                 <option value="Today">Today</option>
-                <option value="Last 30 days">Next 30 days</option>
+                <option value="Next 30 days">Next 30 days</option>
                 <option value="Last 60 Days">Last 30 Days</option>
                 <option value="1 Year">Last 1 Year</option>
               </select>
