@@ -190,7 +190,6 @@ export default function App() {
       }
       if(range.toUpperCase() === ("NEXT 30 DAYS"))
         {
-          console.log("processing next 30");
           
           today.setDate(today.getDate() + 29);
          
@@ -522,13 +521,13 @@ export default function App() {
         </fieldset>
       </div>
 
-      <div className="grid-container margin-top-2">
+      <div className="grid-container  margin-top-2">
         <fieldset className="usa-fieldset" hidden={hideAdavanceOptions}>
           <legend className="usa-legend text-bold">
             <u> Advanced Search Options</u>
           </legend>
 
-          <div className="grid-row grid-gap-1 margin-top-neg-2">
+          <div className="grid-row grid-gap-05 margin-top-neg-2">
 
             <div id="perf_dt_outer" className="usa-date-picker usa-date-picker--initialized grid-col-auto" data-min-date="0000-01-01">
               <label className="usa-label" htmlFor="perf-date-internal">Period of Performance</label>
@@ -569,7 +568,7 @@ export default function App() {
                 ></div>
               </div>
             </div>
-            <div className="grid-col">
+            <div className="grid-col-auto">
               <label className="usa-label" htmlFor="input-offer_dt">Offers Due Date</label>
               <select
                 className="usa-select"
